@@ -5,16 +5,54 @@ import { useEffect, useRef, useState } from "react";
 
 const SEEN_KEY = "greenhouse-intro-seen";
 
-const PETALS = [
-  { glyph: "✿", left: "8%", size: "1.4rem", dur: "11s", delay: "0s", o: 0.4 },
-  { glyph: "❀", left: "22%", size: "1rem", dur: "14s", delay: "2.5s", o: 0.35 },
-  { glyph: "✺", left: "36%", size: "0.8rem", dur: "10s", delay: "5s", o: 0.3 },
-  { glyph: "❧", left: "58%", size: "1.2rem", dur: "13s", delay: "1.2s", o: 0.4 },
-  { glyph: "⚘", left: "72%", size: "1.5rem", dur: "12s", delay: "3.8s", o: 0.35 },
-  { glyph: "☙", left: "86%", size: "1rem", dur: "15s", delay: "0.6s", o: 0.3 },
-  { glyph: "✿", left: "48%", size: "0.9rem", dur: "16s", delay: "6.5s", o: 0.25 },
-  { glyph: "❀", left: "92%", size: "0.8rem", dur: "11s", delay: "8s", o: 0.3 },
+// Fixed drift lanes; the season decides what travels along them and which way.
+const LANES = [
+  { left: "8%", size: "1.4rem", dur: "11s", delay: "0s", o: 0.4 },
+  { left: "22%", size: "1rem", dur: "14s", delay: "2.5s", o: 0.35 },
+  { left: "36%", size: "0.8rem", dur: "10s", delay: "5s", o: 0.3 },
+  { left: "58%", size: "1.2rem", dur: "13s", delay: "1.2s", o: 0.4 },
+  { left: "72%", size: "1.5rem", dur: "12s", delay: "3.8s", o: 0.35 },
+  { left: "86%", size: "1rem", dur: "15s", delay: "0.6s", o: 0.3 },
+  { left: "48%", size: "0.9rem", dur: "16s", delay: "6.5s", o: 0.25 },
+  { left: "92%", size: "0.8rem", dur: "11s", delay: "8s", o: 0.3 },
 ];
+
+// Brand palette
+const OLIVE = "#A7B79D";
+const OLIVE_DEEP = "#6b7a5e";
+const EARTH = "#BBAA92";
+const BLUSH = "#E6C6C3";
+const SKY = "#CFE2EE";
+
+type Season = "spring" | "summer" | "autumn" | "winter";
+
+const SEASONS: Record<
+  Season,
+  { glyphs: string[]; colors: string[]; fall: boolean }
+> = {
+  // petals rise like things growing
+  spring: { glyphs: ["✿", "❀", "⚘", "❁"], colors: [OLIVE, BLUSH], fall: false },
+  summer: {
+    glyphs: ["✺", "❁", "✾", "❀"],
+    colors: [OLIVE_DEEP, BLUSH],
+    fall: false,
+  },
+  // leaves and snow fall like the season turning
+  autumn: {
+    glyphs: ["❧", "☙", "✾", "❧"],
+    colors: [EARTH, OLIVE_DEEP],
+    fall: true,
+  },
+  winter: { glyphs: ["❄", "❅", "✦", "❄"], colors: [SKY, EARTH], fall: true },
+};
+
+function currentSeason(): Season {
+  const m = new Date().getMonth(); // 0 = Jan
+  if (m >= 2 && m <= 4) return "spring";
+  if (m >= 5 && m <= 7) return "summer";
+  if (m >= 8 && m <= 10) return "autumn";
+  return "winter";
+}
 
 export default function Welcome() {
   const pathname = usePathname();
@@ -25,7 +63,7 @@ export default function Welcome() {
 
   const leave = () => {
     setPhase((p) => (p === "show" ? "leaving" : p));
-    timers.current.push(setTimeout(() => setPhase("done"), 1100));
+    timers.current.push(setTimeout(() => setPhase("done"), 1550));
   };
 
   useEffect(() => {
@@ -40,7 +78,7 @@ export default function Welcome() {
     if (!forced) {
       const t = setTimeout(() => {
         setPhase("leaving");
-        timers.current.push(setTimeout(() => setPhase("done"), 1100));
+        timers.current.push(setTimeout(() => setPhase("done"), 1550));
       }, 5600);
       timers.current.push(t);
     }
@@ -59,23 +97,27 @@ export default function Welcome() {
       aria-label="Enter The Greenhouse"
     >
       <div className="intro-grain" />
-      {PETALS.map((p, i) => (
-        <span
-          key={i}
-          className="intro-petal"
-          style={
-            {
-              left: p.left,
-              fontSize: p.size,
-              "--petal-dur": p.dur,
-              "--petal-delay": p.delay,
-              "--petal-opacity": p.o,
-            } as React.CSSProperties
-          }
-        >
-          {p.glyph}
-        </span>
-      ))}
+      {LANES.map((p, i) => {
+        const season = SEASONS[currentSeason()];
+        return (
+          <span
+            key={i}
+            className={`intro-petal ${season.fall ? "intro-petal-fall" : ""}`}
+            style={
+              {
+                left: p.left,
+                fontSize: p.size,
+                color: season.colors[i % season.colors.length],
+                "--petal-dur": p.dur,
+                "--petal-delay": p.delay,
+                "--petal-opacity": p.o,
+              } as React.CSSProperties
+            }
+          >
+            {season.glyphs[i % season.glyphs.length]}
+          </span>
+        );
+      })}
 
       <div className="relative px-6 text-center">
         {/* eslint-disable-next-line @next/next/no-img-element */}

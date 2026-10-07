@@ -14,6 +14,7 @@ import {
   statusLabel,
 } from "@/components/ui";
 import { Dinner, Guest } from "@/lib/types";
+import { petalBurst } from "@/lib/petals";
 
 const RSVPS: Guest["rsvp"][] = ["invited", "yes", "maybe", "no"];
 const rsvpTone: Record<Guest["rsvp"], "earth" | "olive" | "sky" | "blush"> = {
@@ -254,11 +255,14 @@ export default function GardenPage() {
                     </div>
                     <Select
                       value={g.rsvp}
-                      onChange={(e) =>
-                        update("guests", g.id, {
-                          rsvp: e.target.value as Guest["rsvp"],
-                        })
-                      }
+                      onChange={(e) => {
+                        const next = e.target.value as Guest["rsvp"];
+                        if (next === "yes") {
+                          const r = e.target.getBoundingClientRect();
+                          petalBurst(r.left + r.width / 2, r.top);
+                        }
+                        update("guests", g.id, { rsvp: next });
+                      }}
                       className="w-28"
                     >
                       {RSVPS.map((r) => (

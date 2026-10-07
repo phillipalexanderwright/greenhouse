@@ -12,6 +12,7 @@ import {
   Empty,
 } from "@/components/ui";
 import { Todo, UserName } from "@/lib/types";
+import { petalBurst } from "@/lib/petals";
 
 export default function TodosPage() {
   const { data, insert, update, remove, user } = useStore();
@@ -103,8 +104,11 @@ export default function TodosPage() {
                   items.map((t) => (
                     <Card key={t.id} className="flex items-center gap-3 !p-3">
                       <button
-                        onClick={() => toggle(t)}
-                        className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-olive-deep/60 text-xs text-transparent transition-colors hover:bg-sage hover:text-olive-deep"
+                        onClick={(e) => {
+                          petalBurst(e.clientX, e.clientY);
+                          toggle(t);
+                        }}
+                        className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-olive-deep/60 text-xs text-transparent transition-all hover:scale-110 hover:bg-sage hover:text-olive-deep"
                         aria-label="Mark done"
                       >
                         ✓

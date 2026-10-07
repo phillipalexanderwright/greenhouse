@@ -189,6 +189,31 @@ h3,
   animation: intro-drift var(--petal-dur, 9s) linear var(--petal-delay, 0s)
     infinite;
 }
+/* Autumn & winter: leaves and snow fall instead of rising */
+@keyframes intro-fall {
+  0% {
+    transform: translateY(-15vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: var(--petal-opacity, 0.5);
+  }
+  50% {
+    transform: translateY(40vh) translateX(3vw) rotate(-40deg);
+  }
+  85% {
+    opacity: var(--petal-opacity, 0.5);
+  }
+  100% {
+    transform: translateY(100vh) translateX(-2vw) rotate(-80deg);
+    opacity: 0;
+  }
+}
+.intro-petal-fall {
+  bottom: auto;
+  top: -8vh;
+  animation-name: intro-fall;
+}
 @media (prefers-reduced-motion: reduce) {
   .intro-logo,
   .intro-line-1,
@@ -199,6 +224,207 @@ h3,
     animation: intro-fade 0.4s ease both;
   }
   .intro-petal {
+    display: none;
+  }
+  .intro-overlay.intro-leaving {
+    animation: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+}
+
+/* ——— Ambient motion layer ——— */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Paper grain across the whole app — printed-matter texture */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Every page arrives like a card being set on the table */
+@keyframes page-in {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.page-enter {
+  animation: page-in 0.55s cubic-bezier(0.25, 0.6, 0.3, 1) backwards;
+}
+
+/* Cards grow in, then lift gently to the touch */
+@keyframes card-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.gh-card {
+  animation: card-in 0.5s cubic-bezier(0.25, 0.6, 0.3, 1) backwards;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+.gh-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(65, 73, 59, 0.09);
+  border-color: rgba(187, 170, 146, 0.55);
+}
+.gh-card:nth-child(2) {
+  animation-delay: 0.06s;
+}
+.gh-card:nth-child(3) {
+  animation-delay: 0.12s;
+}
+.gh-card:nth-child(4) {
+  animation-delay: 0.18s;
+}
+.gh-card:nth-child(5) {
+  animation-delay: 0.24s;
+}
+.gh-card:nth-child(6) {
+  animation-delay: 0.3s;
+}
+
+/* Buttons give a little under the finger */
+.gh-press {
+  transition:
+    transform 0.15s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+.gh-press:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+/* Sidebar logo breathes, slow as a plant */
+@keyframes gh-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+}
+.gh-breathe {
+  animation: gh-breathe 7s ease-in-out infinite;
+}
+
+/* Empty-state leaf sways */
+@keyframes gh-sway {
+  0%,
+  100% {
+    transform: rotate(-7deg);
+  }
+  50% {
+    transform: rotate(7deg);
+  }
+}
+.gh-sway {
+  display: inline-block;
+  transform-origin: bottom center;
+  animation: gh-sway 4s ease-in-out infinite;
+}
+
+/* Nav links nudge forward; their botanical mark tilts */
+.gh-navlink {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+.gh-navlink:hover {
+  transform: translateX(3px);
+}
+.gh-mark {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.gh-navlink:hover .gh-mark {
+  transform: rotate(14deg) scale(1.2);
+}
+
+/* Mobile drawer slides in like a greenhouse door */
+@keyframes gh-drawer-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes gh-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.gh-drawer {
+  animation: gh-drawer-in 0.35s cubic-bezier(0.25, 0.6, 0.3, 1) backwards;
+}
+.gh-backdrop {
+  animation: gh-fade-in 0.3s ease backwards;
+}
+
+/* Petal burst — a small celebration where you click */
+.gh-petal-burst {
+  position: fixed;
+  z-index: 10000;
+  pointer-events: none;
+}
+@keyframes gh-petal-pop {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(0.4);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(1);
+    opacity: 0;
+  }
+}
+.gh-petal-burst span {
+  position: absolute;
+  animation: gh-petal-pop 0.8s cubic-bezier(0.2, 0.6, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter,
+  .gh-card,
+  .gh-drawer,
+  .gh-backdrop {
+    animation: none;
+  }
+  .gh-breathe,
+  .gh-sway {
+    animation: none;
+  }
+  .gh-card:hover,
+  .gh-navlink:hover,
+  .gh-press:active:not(:disabled) {
+    transform: none;
+  }
+  .gh-petal-burst {
     display: none;
   }
 }

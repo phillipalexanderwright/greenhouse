@@ -31,7 +31,7 @@ export function Card({
 }) {
   return (
     <div
-      className={`rounded-2xl border border-earth/30 bg-white/60 p-5 shadow-[0_1px_2px_rgba(65,73,59,0.06)] ${className}`}
+      className={`gh-card rounded-2xl border border-earth/30 bg-white/60 p-5 shadow-[0_1px_2px_rgba(65,73,59,0.06)] ${className}`}
     >
       {children}
     </div>
@@ -88,7 +88,7 @@ export function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`rounded-full px-4 py-1.5 text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${styles} ${className}`}
+      className={`gh-press rounded-full px-4 py-1.5 text-sm disabled:cursor-not-allowed disabled:opacity-50 ${styles} ${className}`}
     >
       {children}
     </button>
@@ -96,7 +96,7 @@ export function Button({
 }
 
 const fieldCls =
-  "w-full rounded-lg border border-earth/40 bg-white/80 px-3 py-2 text-sm outline-none focus:border-olive-deep placeholder:text-ink/35";
+  "w-full rounded-lg border border-earth/40 bg-white/80 px-3 py-2 text-sm outline-none transition-[border-color,box-shadow] duration-200 focus:border-olive-deep focus:shadow-[0_0_0_3px_rgba(167,183,157,0.22)] placeholder:text-ink/35";
 
 export function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return <input {...props} className={`${fieldCls} ${props.className ?? ""}`} />;
@@ -125,6 +125,7 @@ export function Select(props: React.SelectHTMLAttributes<HTMLSelectElement>) {
 export function Empty({ children }: { children: ReactNode }) {
   return (
     <p className="py-8 text-center font-display text-lg italic text-ink/40">
+      <span className="gh-sway mr-2 not-italic text-olive/70">❧</span>
       {children}
     </p>
   );

@@ -58,11 +58,11 @@ function NavLinks({
             key={n.href}
             href={n.href}
             onClick={onNavigate}
-            className={`flex items-center gap-3 rounded-full px-4 py-2 text-sm transition-colors ${
+            className={`gh-navlink flex items-center gap-3 rounded-full px-4 py-2 text-sm ${
               active ? "bg-olive-deep text-cream" : "text-ink hover:bg-sage/70"
             }`}
           >
-            <span className="w-4 text-center">{n.mark}</span>
+            <span className="gh-mark w-4 text-center">{n.mark}</span>
             {n.label}
           </Link>
         );
@@ -136,10 +136,10 @@ export default function Shell({ children }: { children: ReactNode }) {
       {menuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div
-            className="absolute inset-0 bg-ink/30"
+            className="gh-backdrop absolute inset-0 bg-ink/30"
             onClick={() => setMenuOpen(false)}
           />
-          <div className="absolute right-0 top-0 flex h-full w-72 max-w-[85vw] flex-col overflow-y-auto border-l border-earth/30 bg-cream px-5 py-6">
+          <div className="gh-drawer absolute right-0 top-0 flex h-full w-72 max-w-[85vw] flex-col overflow-y-auto border-l border-earth/30 bg-cream px-5 py-6">
             <div className="mb-6 flex items-center justify-between">
               <div className="font-display text-xl font-semibold tracking-wide">
                 THE GREENHOUSE
@@ -163,7 +163,7 @@ export default function Shell({ children }: { children: ReactNode }) {
       {/* Desktop sidebar */}
       <aside className="sticky top-0 hidden h-screen w-60 shrink-0 flex-col border-r border-earth/30 bg-sage/30 px-5 py-8 lg:flex">
         <div className="mb-10 text-center">
-          <div className="mb-3">
+          <div className="gh-breathe mb-3">
             <Logo />
           </div>
           <div className="font-display text-xl font-semibold tracking-wide">
