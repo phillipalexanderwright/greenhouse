@@ -467,6 +467,54 @@ body::after {
   }
 }
 
+/* ——— The Garden: the long table ——— */
+/* Each chair is set in turn, like laying place settings */
+@keyframes gh-seat-in {
+  0% {
+    opacity: 0;
+    transform: translateY(7px) scale(0.5);
+  }
+  70% {
+    transform: translateY(-1px) scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.gh-seat {
+  animation: gh-seat-in 0.55s cubic-bezier(0.25, 0.6, 0.3, 1) backwards;
+  transition:
+    background-color 0.45s ease,
+    border-color 0.45s ease,
+    color 0.45s ease,
+    box-shadow 0.45s ease,
+    transform 0.2s ease;
+  cursor: default;
+}
+.gh-seat:hover {
+  transform: scale(1.25);
+}
+.gh-tabletop {
+  transform-origin: center;
+  animation: intro-grow 0.9s cubic-bezier(0.25, 0.6, 0.3, 1) 0.15s backwards;
+}
+
+/* Guest rows take their seats one after another */
+@keyframes gh-row-in-kf {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.gh-row-in {
+  animation: gh-row-in-kf 0.45s cubic-bezier(0.25, 0.6, 0.3, 1) backwards;
+}
+
 /* Petal burst — a small celebration where you click */
 .gh-petal-burst {
   position: fixed;
@@ -513,5 +561,13 @@ body::after {
   }
   .gh-pulse {
     animation: none;
+  }
+  .gh-seat,
+  .gh-tabletop,
+  .gh-row-in {
+    animation: none;
+  }
+  .gh-seat:hover {
+    transform: none;
   }
 }

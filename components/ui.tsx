@@ -95,11 +95,19 @@ export function Button({
   );
 }
 
-const fieldCls =
-  "w-full rounded-lg border border-earth/40 bg-white/80 px-3 py-2 text-sm outline-none transition-[border-color,box-shadow] duration-200 focus:border-olive-deep focus:shadow-[0_0_0_3px_rgba(167,183,157,0.22)] placeholder:text-ink/35";
+const fieldBase =
+  "rounded-lg border border-earth/40 bg-white/80 px-3 py-2 text-sm outline-none transition-[border-color,box-shadow] duration-200 focus:border-olive-deep focus:shadow-[0_0_0_3px_rgba(167,183,157,0.22)] placeholder:text-ink/35";
+
+// Fields default to full width, but step aside the moment a caller brings
+// its own w-* class — otherwise `w-full` and e.g. `w-28` fight in the
+// stylesheet and the winner depends on Tailwind's output order.
+function fieldCls(extra?: string) {
+  const hasWidth = /(^|\s)w-/.test(extra ?? "");
+  return `${hasWidth ? "" : "w-full"} ${fieldBase} ${extra ?? ""}`;
+}
 
 export function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
-  return <input {...props} className={`${fieldCls} ${props.className ?? ""}`} />;
+  return <input {...props} className={fieldCls(props.className)} />;
 }
 
 export function TextArea(
@@ -108,7 +116,7 @@ export function TextArea(
   return (
     <textarea
       {...props}
-      className={`${fieldCls} ${props.className ?? ""}`}
+      className={fieldCls(props.className)}
       rows={props.rows ?? 2}
     />
   );
@@ -116,7 +124,7 @@ export function TextArea(
 
 export function Select(props: React.SelectHTMLAttributes<HTMLSelectElement>) {
   return (
-    <select {...props} className={`${fieldCls} ${props.className ?? ""}`}>
+    <select {...props} className={fieldCls(props.className)}>
       {props.children}
     </select>
   );
