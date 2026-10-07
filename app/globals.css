@@ -287,20 +287,37 @@ body::after {
   box-shadow: 0 8px 24px rgba(65, 73, 59, 0.09);
   border-color: rgba(187, 170, 146, 0.55);
 }
-.gh-card:nth-child(2) {
+.gh-card:nth-child(2),
+:nth-child(2) > .gh-card {
   animation-delay: 0.06s;
 }
-.gh-card:nth-child(3) {
+.gh-card:nth-child(3),
+:nth-child(3) > .gh-card {
   animation-delay: 0.12s;
 }
-.gh-card:nth-child(4) {
+.gh-card:nth-child(4),
+:nth-child(4) > .gh-card {
   animation-delay: 0.18s;
 }
-.gh-card:nth-child(5) {
+.gh-card:nth-child(5),
+:nth-child(5) > .gh-card {
   animation-delay: 0.24s;
 }
-.gh-card:nth-child(6) {
+.gh-card:nth-child(6),
+:nth-child(6) > .gh-card {
   animation-delay: 0.3s;
+}
+.gh-card:nth-child(7),
+:nth-child(7) > .gh-card {
+  animation-delay: 0.36s;
+}
+.gh-card:nth-child(8),
+:nth-child(8) > .gh-card {
+  animation-delay: 0.42s;
+}
+.gh-card:nth-child(n + 9),
+:nth-child(n + 9) > .gh-card {
+  animation-delay: 0.48s;
 }
 
 /* Buttons give a little under the finger */

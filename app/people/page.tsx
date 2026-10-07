@@ -64,7 +64,7 @@ export default function PeoplePage() {
         }
       />
 
-      <Card className="mb-6 flex items-center gap-3">
+      <Card className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
         <Input
           placeholder="Add a person…"
           value={newName}
@@ -81,14 +81,23 @@ export default function PeoplePage() {
           {people.map((p) => {
             const attended = dinnersFor(p.name);
             return (
-              <Card key={p.id} className="space-y-3">
+              <Card key={p.id} className="group space-y-3">
                 <div className="flex items-start justify-between">
-                  <h3 className="font-display text-xl font-semibold">
-                    {p.name}
-                  </h3>
-                  <Button variant="danger" onClick={() => remove("people", p.id)}>
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-olive/50 bg-sage/50 font-display text-lg font-semibold text-olive-deep">
+                      {p.name.trim().charAt(0).toUpperCase() || "?"}
+                    </span>
+                    <h3 className="font-display text-xl font-semibold">
+                      {p.name}
+                    </h3>
+                  </div>
+                  <button
+                    onClick={() => remove("people", p.id)}
+                    aria-label={`Remove ${p.name}`}
+                    className="rounded-full px-2 py-0.5 text-sm text-ink/30 opacity-0 transition-[opacity,color,background-color] duration-200 hover:bg-blush/40 hover:text-red-800 group-hover:opacity-100"
+                  >
                     ×
-                  </Button>
+                  </button>
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {p.tags

@@ -68,7 +68,7 @@ export default function AgentsPage() {
         subtitle="The staff of The Greenhouse — who does what, and what they did"
       />
 
-      <Card className="mb-8 flex items-center gap-3">
+      <Card className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center">
         <Input
           placeholder="Agent name — e.g. The Botanist"
           value={name}
@@ -91,7 +91,7 @@ export default function AgentsPage() {
               .filter((r) => r.agent_id === a.id)
               .sort((x, y) => y.run_at.localeCompare(x.run_at));
             return (
-              <Card key={a.id} className="space-y-3">
+              <Card key={a.id} className="group space-y-3">
                 <div className="flex items-start justify-between gap-2">
                   <div>
                     <h3 className="font-display text-2xl font-semibold">
@@ -101,9 +101,13 @@ export default function AgentsPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Pill tone={statusTone[a.status]}>{a.status}</Pill>
-                    <Button variant="danger" onClick={() => remove("agents", a.id)}>
+                    <button
+                      onClick={() => remove("agents", a.id)}
+                      aria-label={`Remove ${a.name}`}
+                      className="rounded-full px-2 py-0.5 text-sm text-ink/30 opacity-0 transition-[opacity,color,background-color] duration-200 hover:bg-blush/40 hover:text-red-800 group-hover:opacity-100"
+                    >
                       ×
-                    </Button>
+                    </button>
                   </div>
                 </div>
 
@@ -147,7 +151,7 @@ export default function AgentsPage() {
                 </div>
 
                 {logFor === a.id && (
-                  <div className="flex items-center gap-2 rounded-xl bg-sage/40 p-3">
+                  <div className="flex flex-col gap-2 rounded-xl bg-sage/40 p-3 sm:flex-row sm:items-center">
                     <Input
                       placeholder="What did it do?"
                       value={logSummary}
@@ -173,10 +177,11 @@ export default function AgentsPage() {
                   <div>
                     <div className="label-caps mb-2">Run log</div>
                     <ul className="space-y-1.5">
-                      {runs.slice(0, 5).map((r) => (
+                      {runs.slice(0, 5).map((r, i) => (
                         <li
                           key={r.id}
-                          className="flex items-center gap-2 text-sm"
+                          className="gh-row-in flex items-center gap-2 text-sm"
+                          style={{ animationDelay: `${i * 50}ms` }}
                         >
                           <Pill tone={outcomeTone[r.outcome]}>
                             {statusLabel(r.outcome)}

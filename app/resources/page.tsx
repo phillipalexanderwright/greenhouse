@@ -41,7 +41,7 @@ export default function ResourcesPage() {
         subtitle="Every link, vendor, doc, and reference — one shelf"
       />
 
-      <Card className="mb-8 flex items-center gap-3">
+      <Card className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center">
         <Input
           placeholder="Name it…"
           value={title}
@@ -74,13 +74,14 @@ export default function ResourcesPage() {
           {categories.map((cat) => (
             <div key={cat}>
               <h2 className="mb-3 font-display text-2xl font-semibold">
+                <span className="mr-1.5 text-lg text-olive/80">❧</span>
                 {cat}
               </h2>
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
                 {data.resources
                   .filter((r) => (r.category || "Uncategorized") === cat)
                   .map((r) => (
-                    <Card key={r.id} className="space-y-2">
+                    <Card key={r.id} className="group space-y-2">
                       <div className="flex items-start justify-between gap-2">
                         {r.url ? (
                           <a
@@ -94,12 +95,13 @@ export default function ResourcesPage() {
                         ) : (
                           <span className="font-medium">{r.title}</span>
                         )}
-                        <Button
-                          variant="danger"
+                        <button
                           onClick={() => remove("resources", r.id)}
+                          aria-label={`Remove ${r.title}`}
+                          className="rounded-full px-2 py-0.5 text-sm text-ink/30 opacity-0 transition-[opacity,color,background-color] duration-200 hover:bg-blush/40 hover:text-red-800 group-hover:opacity-100"
                         >
                           ×
-                        </Button>
+                        </button>
                       </div>
                       <Input
                         placeholder="Notes…"

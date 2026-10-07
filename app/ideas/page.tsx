@@ -43,7 +43,7 @@ export default function IdeasPage() {
         subtitle="Every idea is organic matter — nothing is wasted"
       />
 
-      <Card className="mb-6 flex items-center gap-3">
+      <Card className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
         <Input
           placeholder="Toss in an idea — a song, a format, a flower, a feeling…"
           value={title}
@@ -80,12 +80,16 @@ export default function IdeasPage() {
                   <Empty>—</Empty>
                 ) : (
                   ideas.map((i) => (
-                    <Card key={i.id} className="space-y-2">
+                    <Card key={i.id} className="group space-y-2">
                       <div className="flex items-start justify-between gap-2">
                         <span className="text-sm">{i.title}</span>
-                        <Button variant="danger" onClick={() => remove("ideas", i.id)}>
+                        <button
+                          onClick={() => remove("ideas", i.id)}
+                          aria-label={`Remove ${i.title}`}
+                          className="rounded-full px-2 py-0.5 text-sm text-ink/30 opacity-0 transition-[opacity,color,background-color] duration-200 hover:bg-blush/40 hover:text-red-800 group-hover:opacity-100"
+                        >
                           ×
-                        </Button>
+                        </button>
                       </div>
                       <div className="flex items-center justify-between">
                         <div className="flex gap-1.5">

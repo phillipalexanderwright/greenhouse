@@ -160,7 +160,11 @@ export function Tending() {
       ) : (
         <ul className="space-y-2.5">
           {chores.slice(0, 5).map((c, i) => (
-            <li key={i} className="flex items-start gap-2 text-sm">
+            <li
+              key={i}
+              className="gh-row-in flex items-start gap-2 text-sm"
+              style={{ animationDelay: `${i * 60}ms` }}
+            >
               <span className="mt-0.5 text-olive-deep">✾</span>
               <span>
                 {c.text}{" "}

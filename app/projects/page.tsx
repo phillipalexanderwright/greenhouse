@@ -15,11 +15,11 @@ import {
 import { Project } from "@/lib/types";
 import { harvestBloom } from "@/lib/petals";
 
-const LANES: { key: Project["status"]; title: string }[] = [
-  { key: "seed", title: "Seed" },
-  { key: "growing", title: "Growing" },
-  { key: "blooming", title: "Blooming" },
-  { key: "done", title: "Harvested" },
+const LANES: { key: Project["status"]; title: string; mark: string }[] = [
+  { key: "seed", title: "Seed", mark: "·" },
+  { key: "growing", title: "Growing", mark: "⚘" },
+  { key: "blooming", title: "Blooming", mark: "❀" },
+  { key: "done", title: "Harvested", mark: "❧" },
 ];
 
 export default function ProjectsPage() {
@@ -45,7 +45,7 @@ export default function ProjectsPage() {
         subtitle="Everything growing that isn't the box or a dinner"
       />
 
-      <Card className="mb-6 flex items-center gap-3">
+      <Card className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
         <Input
           placeholder="Plant a new project…"
           value={title}
@@ -61,6 +61,7 @@ export default function ProjectsPage() {
           return (
             <div key={lane.key}>
               <h2 className="mb-3 font-display text-2xl font-semibold">
+                <span className="mr-1.5 text-lg text-olive/80">{lane.mark}</span>
                 {lane.title}{" "}
                 <span className="text-base text-ink/40">
                   {projects.length}
@@ -71,15 +72,16 @@ export default function ProjectsPage() {
                   <Empty>—</Empty>
                 ) : (
                   projects.map((p) => (
-                    <Card key={p.id} className="space-y-2">
+                    <Card key={p.id} className="group space-y-2">
                       <div className="flex items-start justify-between gap-2">
                         <span className="text-sm font-medium">{p.title}</span>
-                        <Button
-                          variant="danger"
+                        <button
                           onClick={() => remove("projects", p.id)}
+                          aria-label={`Remove ${p.title}`}
+                          className="rounded-full px-2 py-0.5 text-sm text-ink/30 opacity-0 transition-[opacity,color,background-color] duration-200 hover:bg-blush/40 hover:text-red-800 group-hover:opacity-100"
                         >
                           ×
-                        </Button>
+                        </button>
                       </div>
                       <TextArea
                         placeholder="What is this?"

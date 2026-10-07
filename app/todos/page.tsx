@@ -69,7 +69,7 @@ export default function TodosPage() {
         subtitle="Who's doing what — in real time"
       />
 
-      <Card className="mb-6 flex items-center gap-3">
+      <Card className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
         <Input
           placeholder="What needs doing?"
           value={title}
@@ -102,7 +102,7 @@ export default function TodosPage() {
                   <Empty>Clear.</Empty>
                 ) : (
                   items.map((t) => (
-                    <Card key={t.id} className="flex items-center gap-3 !p-3">
+                    <Card key={t.id} className="group flex items-center gap-3 !p-3">
                       <button
                         onClick={(e) => {
                           petalBurst(e.clientX, e.clientY);
@@ -117,9 +117,13 @@ export default function TodosPage() {
                       <span className="text-[11px] text-ink/40">
                         by {t.created_by}
                       </span>
-                      <Button variant="danger" onClick={() => remove("todos", t.id)}>
+                      <button
+                        onClick={() => remove("todos", t.id)}
+                        aria-label={`Remove ${t.title}`}
+                        className="rounded-full px-2 py-0.5 text-sm text-ink/30 opacity-0 transition-[opacity,color,background-color] duration-200 hover:bg-blush/40 hover:text-red-800 group-hover:opacity-100"
+                      >
                         ×
-                      </Button>
+                      </button>
                     </Card>
                   ))
                 )}
@@ -137,8 +141,12 @@ export default function TodosPage() {
       ) : (
         <Card>
           <ul className="divide-y divide-earth/15">
-            {done.slice(0, 30).map((t) => (
-              <li key={t.id} className="flex items-center gap-3 py-2">
+            {done.slice(0, 30).map((t, i) => (
+              <li
+                key={t.id}
+                className="gh-row-in flex items-center gap-3 py-2"
+                style={{ animationDelay: `${Math.min(i, 10) * 45}ms` }}
+              >
                 <button
                   onClick={() => toggle(t)}
                   className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-olive text-xs text-white"

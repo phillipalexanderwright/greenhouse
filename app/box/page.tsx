@@ -32,12 +32,13 @@ const STATUSES: BoxItemStatus[] = [
   "shipped",
 ];
 
-const statusTone: Record<BoxItemStatus, "earth" | "sky" | "blush" | "sage" | "olive"> = {
-  idea: "earth",
-  sourcing: "sky",
-  in_production: "blush",
-  assembled: "sage",
-  shipped: "olive",
+// Each stage of the making gets its own shade, worn as a small dot
+const statusDot: Record<BoxItemStatus, string> = {
+  idea: "bg-earth/70",
+  sourcing: "bg-sky",
+  in_production: "bg-blush",
+  assembled: "bg-sage",
+  shipped: "bg-olive-deep",
 };
 
 export default function BoxPage() {
@@ -177,12 +178,12 @@ export default function BoxPage() {
           <Card>
             <div className="mb-4 flex items-center justify-between">
               <div className="label-caps">Contents</div>
-              <div className="text-sm text-ink/60">
-                est. cost per theme: ${totalCost.toFixed(2)}
+              <div className="font-display text-sm italic text-ink/55">
+                about ${totalCost.toFixed(2)} a box, so far
               </div>
             </div>
 
-            <div className="mb-4 flex gap-2">
+            <div className="mb-4 flex flex-col gap-2 sm:flex-row">
               <Input
                 placeholder="Add something to the box…"
                 value={newItem}
@@ -219,13 +220,20 @@ export default function BoxPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {items.map((i) => (
-                    <tr key={i.id} className="border-b border-earth/15">
+                  {items.map((i, idx) => (
+                    <tr
+                      key={i.id}
+                      className="gh-row-in group border-b border-earth/15 transition-colors hover:bg-sage/20"
+                      style={{ animationDelay: `${idx * 45}ms` }}
+                    >
                       <td className="py-2.5 pr-3">{i.title}</td>
                       <td className="py-2.5 pr-3">
                         <Pill tone="earth">{statusLabel(i.kind)}</Pill>
                       </td>
                       <td className="py-2.5 pr-3">
+                        <span
+                          className={`mr-2 inline-block h-2 w-2 rounded-full align-middle transition-colors duration-300 ${statusDot[i.status]}`}
+                        />
                         <Select
                           value={i.status}
                           onChange={(e) =>
@@ -271,17 +279,13 @@ export default function BoxPage() {
                         />
                       </td>
                       <td className="py-2.5 text-right">
-                        <span className="mr-2">
-                          <Pill tone={statusTone[i.status]}>
-                            {statusLabel(i.status)}
-                          </Pill>
-                        </span>
-                        <Button
-                          variant="danger"
+                        <button
                           onClick={() => remove("box_items", i.id)}
+                          aria-label={`Remove ${i.title}`}
+                          className="rounded-full px-2 py-0.5 text-sm text-ink/30 opacity-0 transition-[opacity,color,background-color] duration-200 hover:bg-blush/40 hover:text-red-800 group-hover:opacity-100"
                         >
                           ×
-                        </Button>
+                        </button>
                       </td>
                     </tr>
                   ))}

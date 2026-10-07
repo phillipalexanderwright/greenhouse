@@ -367,11 +367,15 @@ function DailyTab() {
               </tr>
             </thead>
             <tbody className="divide-y divide-earth/15">
-              {recent.map((s) => {
+              {recent.map((s, idx) => {
                 const prev = prevFor(s);
                 const d = prev ? s.followers - prev.followers : null;
                 return (
-                  <tr key={s.id}>
+                  <tr
+                    key={s.id}
+                    className="gh-row-in group transition-colors hover:bg-sage/20"
+                    style={{ animationDelay: `${Math.min(idx, 12) * 40}ms` }}
+                  >
                     <td className="py-2">{s.date}</td>
                     <td className="py-2">
                       <Pill tone={platformPill(s.platform)}>
@@ -398,12 +402,13 @@ function DailyTab() {
                     <td className="py-2 text-right">{s.profile_visits}</td>
                     <td className="py-2 text-right">{s.link_clicks}</td>
                     <td className="py-2 text-right">
-                      <Button
-                        variant="danger"
+                      <button
                         onClick={() => remove("social_snapshots", s.id)}
+                        aria-label="Remove snapshot"
+                        className="rounded-full px-2 py-0.5 text-sm text-ink/30 opacity-0 transition-[opacity,color,background-color] duration-200 hover:bg-blush/40 hover:text-red-800 group-hover:opacity-100"
                       >
                         ×
-                      </Button>
+                      </button>
                     </td>
                   </tr>
                 );
@@ -537,7 +542,7 @@ function ContentTab() {
               <Empty>Nothing planned. Seed next week&apos;s posts.</Empty>
             ) : (
               planned.map((p) => (
-                <Card key={p.id} className="!p-3">
+                <Card key={p.id} className="group !p-3">
                   <div className="flex items-center gap-2">
                     <span className="min-w-0 flex-1 text-sm">{p.title}</span>
                     <Button
@@ -550,12 +555,13 @@ function ContentTab() {
                     >
                       Posted ✓
                     </Button>
-                    <Button
-                      variant="danger"
+                    <button
                       onClick={() => remove("social_posts", p.id)}
+                      aria-label={`Remove ${p.title}`}
+                      className="rounded-full px-2 py-0.5 text-sm text-ink/30 opacity-0 transition-[opacity,color,background-color] duration-200 hover:bg-blush/40 hover:text-red-800 group-hover:opacity-100"
                     >
                       ×
-                    </Button>
+                    </button>
                   </div>
                   <div className="mt-2 flex flex-wrap items-center gap-1.5">
                     <Pill tone={platformPill(p.platform)}>
@@ -588,7 +594,7 @@ function ContentTab() {
               postedList.slice(0, 20).map((p) => {
                 const er = engagementRate(p);
                 return (
-                  <Card key={p.id} className="!p-3">
+                  <Card key={p.id} className="group !p-3">
                     <div className="flex items-center gap-2">
                       <span className="min-w-0 flex-1 text-sm">
                         {p.url ? (
@@ -609,12 +615,13 @@ function ContentTab() {
                           {fmtPct(er)} eng.
                         </Pill>
                       )}
-                      <Button
-                        variant="danger"
+                      <button
                         onClick={() => remove("social_posts", p.id)}
+                        aria-label={`Remove ${p.title}`}
+                        className="rounded-full px-2 py-0.5 text-sm text-ink/30 opacity-0 transition-[opacity,color,background-color] duration-200 hover:bg-blush/40 hover:text-red-800 group-hover:opacity-100"
                       >
                         ×
-                      </Button>
+                      </button>
                     </div>
                     <div className="mt-2 flex flex-wrap items-center gap-1.5">
                       <Pill tone={platformPill(p.platform)}>
@@ -989,7 +996,7 @@ function ExperimentsTab() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <Input
             placeholder="Hypothesis — what do you expect, and why?"
             value={hypothesis}
@@ -1011,17 +1018,18 @@ function ExperimentsTab() {
               <Empty>No experiments running. Strategy is a verb.</Empty>
             ) : (
               running.map((e) => (
-                <Card key={e.id}>
+                <Card key={e.id} className="group">
                   <div className="flex items-start justify-between gap-2">
                     <div className="font-display text-xl font-semibold">
                       {e.title}
                     </div>
-                    <Button
-                      variant="danger"
+                    <button
                       onClick={() => remove("experiments", e.id)}
+                      aria-label={`Remove ${e.title}`}
+                      className="rounded-full px-2 py-0.5 text-sm text-ink/30 opacity-0 transition-[opacity,color,background-color] duration-200 hover:bg-blush/40 hover:text-red-800 group-hover:opacity-100"
                     >
                       ×
-                    </Button>
+                    </button>
                   </div>
                   {e.hypothesis && (
                     <p className="mt-1 text-sm italic text-ink/60">

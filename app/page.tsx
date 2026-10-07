@@ -90,7 +90,7 @@ export default function ThisMonth() {
               </p>
               <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-earth/20">
                 <div
-                  className="h-full rounded-full bg-olive"
+                  className="h-full rounded-full bg-olive transition-[width] duration-700 ease-out"
                   style={{
                     width: items.length
                       ? `${(doneItems / items.length) * 100}%`
@@ -107,7 +107,11 @@ export default function ThisMonth() {
               <div className="font-display text-3xl font-semibold">
                 {dinner
                   ? daysToDinner !== null && !isNaN(daysToDinner)
-                    ? `${daysToDinner} days`
+                    ? daysToDinner < 0
+                      ? "Held ❀"
+                      : daysToDinner === 0
+                        ? "Tonight"
+                        : `${daysToDinner} day${daysToDinner === 1 ? "" : "s"}`
                     : "No date"
                   : "Not planned"}
               </div>
@@ -138,8 +142,12 @@ export default function ThisMonth() {
               <Empty>Nothing yet.</Empty>
             ) : (
               <ul className="space-y-2">
-                {recentDone.map((t) => (
-                  <li key={t.id} className="text-sm text-ink/70">
+                {recentDone.map((t, i) => (
+                  <li
+                    key={t.id}
+                    className="gh-row-in text-sm text-ink/70"
+                    style={{ animationDelay: `${i * 60}ms` }}
+                  >
                     <span className="text-olive-deep">✓</span>{" "}
                     <span className="line-through decoration-earth/60">
                       {t.title}
@@ -162,8 +170,12 @@ export default function ThisMonth() {
               <Empty>Nothing on your plate. Go touch grass — literally.</Empty>
             ) : (
               <ul className="space-y-2">
-                {myTodos.slice(0, 6).map((t) => (
-                  <li key={t.id} className="flex items-center gap-2 text-sm">
+                {myTodos.slice(0, 6).map((t, i) => (
+                  <li
+                    key={t.id}
+                    className="gh-row-in flex items-center gap-2 text-sm"
+                    style={{ animationDelay: `${i * 60}ms` }}
+                  >
                     <span className="text-olive-deep">○</span> {t.title}
                     {t.assignee === "Both" && <Pill tone="sky">both</Pill>}
                   </li>
@@ -204,8 +216,12 @@ export default function ThisMonth() {
               <Empty>Nothing sprouting. Toss something in the compost.</Empty>
             ) : (
               <ul className="space-y-2">
-                {sprouting.slice(0, 5).map((i) => (
-                  <li key={i.id} className="text-sm">
+                {sprouting.slice(0, 5).map((i, idx) => (
+                  <li
+                    key={i.id}
+                    className="gh-row-in text-sm"
+                    style={{ animationDelay: `${idx * 60}ms` }}
+                  >
                     ✿ {i.title}{" "}
                     <span className="text-xs text-ink/45">— {i.added_by}</span>
                   </li>

@@ -546,7 +546,7 @@ export default function WikiPage() {
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`rounded-full px-4 py-1.5 text-sm transition-colors ${
+            className={`gh-press rounded-full px-4 py-1.5 text-sm transition-colors ${
               tab === t.key
                 ? "bg-olive-deep text-cream"
                 : "border border-earth/40 text-ink hover:bg-sage/50"
