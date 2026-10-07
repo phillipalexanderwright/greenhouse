@@ -12,6 +12,31 @@ import {
 import { supabase, isLive } from "./supabase";
 import { Tables, TableName, TABLE_NAMES, UserName } from "./types";
 import { seedData } from "./seed";
+import { toast } from "./toast";
+import { describeChange } from "./gardenToast";
+
+// ----- garden toasts: suppress echoes of your own edits, throttle chatter -----
+const localEcho = new Map<string, number>();
+function markLocal(id: string) {
+  const now = Date.now();
+  localEcho.set(id, now);
+  if (localEcho.size > 300) {
+    for (const [k, v] of localEcho) if (now - v > 15000) localEcho.delete(k);
+  }
+}
+function isLocalEcho(id: string | undefined) {
+  if (!id) return true;
+  const ts = localEcho.get(id);
+  return !!ts && Date.now() - ts < 15000;
+}
+const lastToastAt = new Map<string, number>();
+function shouldToast(key: string) {
+  const now = Date.now();
+  const last = lastToastAt.get(key) ?? 0;
+  if (now - last < 90000) return false;
+  lastToastAt.set(key, now);
+  return true;
+}
 
 const LS_DATA_KEY = "greenhouse-data-v1";
 const LS_USER_KEY = "greenhouse-user";
@@ -115,6 +140,18 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           (payload) => {
             const table = payload.table as TableName;
             if (!TABLE_NAMES.includes(table)) return;
+            // A change made by someone else — let the garden say so.
+            const changed = (payload.new ?? payload.old) as AnyRow | undefined;
+            if (!isLocalEcho(changed?.id)) {
+              const d = describeChange(
+                table,
+                payload.eventType,
+                (payload.new ?? {}) as Record<string, unknown>,
+                payload.old as Record<string, unknown> | undefined
+              );
+              if (d && shouldToast(`${table}:${changed?.id}`))
+                toast(d.msg, d.glyph);
+            }
             setData((prev) => {
               const rows = [...(prev[table] as unknown as AnyRow[])];
               if (payload.eventType === "INSERT") {
@@ -177,6 +214,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         id: crypto.randomUUID(),
         created_at: new Date().toISOString(),
       } as AnyRow;
+      markLocal(full.id);
       setData((prev) => {
         const next = {
           ...prev,
@@ -204,6 +242,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       rowId: string,
       patch: Partial<Tables[T][number]>
     ) => {
+      markLocal(rowId);
       setData((prev) => {
         const rows = (prev[table] as unknown as AnyRow[]).map((r) =>
           r.id === rowId ? { ...r, ...patch } : r
@@ -227,6 +266,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   const remove = useCallback(
     (table: TableName, rowId: string) => {
+      markLocal(rowId);
       setData((prev) => {
         const next = {
           ...prev,

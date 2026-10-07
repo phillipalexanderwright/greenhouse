@@ -13,6 +13,7 @@ import {
   Empty,
 } from "@/components/ui";
 import { Project } from "@/lib/types";
+import { harvestBloom } from "@/lib/petals";
 
 const LANES: { key: Project["status"]; title: string }[] = [
   { key: "seed", title: "Seed" },
@@ -115,11 +116,12 @@ export default function ProjectsPage() {
                         <Pill tone="sky">{p.owner}</Pill>
                         <Select
                           value={p.status}
-                          onChange={(e) =>
-                            update("projects", p.id, {
-                              status: e.target.value as Project["status"],
-                            })
-                          }
+                          onChange={(e) => {
+                            const next = e.target.value as Project["status"];
+                            if (next === "done" && p.status !== "done")
+                              harvestBloom();
+                            update("projects", p.id, { status: next });
+                          }}
                           className="w-32"
                         >
                           {LANES.map((l) => (

@@ -6,6 +6,73 @@ import { useStore } from "@/lib/store";
 import { Card, Button, Empty, Pill } from "@/components/ui";
 import { askAI, NO_KEY_MESSAGE } from "@/lib/ai";
 import { todayStr, daysAgoStr } from "@/lib/social";
+import { petalBurst } from "@/lib/petals";
+
+// ---------- Seed of the Day ----------
+
+const SEEDS = [
+  "What would this month smell like, pressed flat in an envelope?",
+  "Write one line of a poem about something you walked past today.",
+  "Which song would you play at golden hour in a greenhouse?",
+  "Sketch the flash tattoo you'd give a houseplant.",
+  "What's a ritual worth mailing to twenty strangers?",
+  "Name a color you saw today that doesn't have a name yet.",
+  "What would the table look like if the theme were 'first frost'?",
+  "Who do you know that should meet someone else you know?",
+  "What did you collect as a kid — could the box hold it?",
+  "Describe the last time a stranger made your day.",
+  "If this month were a dried flower, which one?",
+  "What's the smallest thing that could make a dinner unforgettable?",
+  "Write the toast you'd give at the next Garden.",
+  "What should guests take home in their pocket?",
+  "A postcard from ten years ahead — what does it say?",
+  "What sound belongs in the next box?",
+  "Which corner of San Diego hasn't met us yet?",
+  "What would you teach at a 2nd Nature workshop?",
+  "Invent a small holiday worth celebrating monthly.",
+  "What's blooming right now within a mile of you?",
+  "If the box could grow, what seed would it carry?",
+];
+
+export function Seed() {
+  const { insert, user } = useStore();
+  const [planted, setPlanted] = useState(false);
+  const now = new Date();
+  const start = new Date(now.getFullYear(), 0, 0);
+  const dayOfYear = Math.floor((now.getTime() - start.getTime()) / 86400000);
+  const prompt = SEEDS[dayOfYear % SEEDS.length];
+
+  function plant(e: React.MouseEvent) {
+    if (planted) return;
+    insert("ideas", {
+      title: prompt,
+      kind: "prompt",
+      added_by: user,
+      notes: "Seed of the day",
+      status: "compost",
+    });
+    petalBurst(e.clientX, e.clientY);
+    setPlanted(true);
+  }
+
+  return (
+    <Card className="flex h-full flex-col">
+      <div className="label-caps mb-2">Seed of the day</div>
+      <p className="flex-1 font-display text-lg italic leading-snug text-ink/80">
+        “{prompt}”
+      </p>
+      <div className="mt-4">
+        <button
+          onClick={plant}
+          disabled={planted}
+          className="gh-press rounded-full border border-earth/40 px-3.5 py-1.5 text-xs transition-colors hover:bg-sage/60 disabled:cursor-default disabled:opacity-60"
+        >
+          {planted ? "Planted in the compost ✓" : "✿ Plant it in the compost"}
+        </button>
+      </div>
+    </Card>
+  );
+}
 
 /** Monday of the current week, YYYY-MM-DD. */
 function mondayStr() {

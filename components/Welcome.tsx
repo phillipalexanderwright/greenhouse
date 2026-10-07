@@ -3,8 +3,6 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-const SEEN_KEY = "greenhouse-intro-seen";
-
 // Fixed drift lanes; the season decides what travels along them and which way.
 const LANES = [
   { left: "8%", size: "1.4rem", dur: "11s", delay: "0s", o: 0.4 },
@@ -63,22 +61,19 @@ export default function Welcome() {
 
   const leave = () => {
     setPhase((p) => (p === "show" ? "leaving" : p));
-    timers.current.push(setTimeout(() => setPhase("done"), 1550));
+    timers.current.push(setTimeout(() => setPhase("done"), 2650));
   };
 
   useEffect(() => {
-    // ?intro forces a replay and holds until tapped — for showing it off.
+    // The intro greets every full page load; in-app navigation never replays
+    // it (this layout component only mounts once per load).
+    // ?intro holds the scene until tapped — for showing it off.
     const forced = new URLSearchParams(window.location.search).has("intro");
-    if (!forced && sessionStorage.getItem(SEEN_KEY)) {
-      setPhase("done");
-      return;
-    }
-    sessionStorage.setItem(SEEN_KEY, "1");
     setPhase("show");
     if (!forced) {
       const t = setTimeout(() => {
         setPhase("leaving");
-        timers.current.push(setTimeout(() => setPhase("done"), 1550));
+        timers.current.push(setTimeout(() => setPhase("done"), 2650));
       }, 5600);
       timers.current.push(t);
     }

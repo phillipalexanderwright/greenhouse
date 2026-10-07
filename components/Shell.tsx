@@ -2,9 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useMemo, useState } from "react";
 import { useStore } from "@/lib/store";
 import { UserName } from "@/lib/types";
+import { usePresence, PresenceEntry } from "@/lib/presence";
+import Toasts from "@/components/Toasts";
+import Vine from "@/components/Vine";
 
 const nav = [
   { href: "/", label: "This Month", mark: "✶" },
@@ -71,6 +74,24 @@ function NavLinks({
   );
 }
 
+function PresenceLine({ others }: { others: PresenceEntry[] }) {
+  if (others.length === 0) return null;
+  const labelFor = (path: string) =>
+    nav.find((n) =>
+      n.href === "/" ? path === "/" : path.startsWith(n.href)
+    )?.label ?? "wandering";
+  return (
+    <div className="mt-3 space-y-1 rounded-xl border border-olive/30 bg-sage/40 px-3 py-2 text-center text-[11px] text-ink/70">
+      {others.map((o, i) => (
+        <div key={i}>
+          <span className="gh-pulse mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-olive-deep align-middle" />
+          {o.user} is in the greenhouse · {labelFor(o.path)}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function UserToggle() {
   const { user, setUser, live } = useStore();
   return (
@@ -98,9 +119,17 @@ function UserToggle() {
 
 export default function Shell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const { ready } = useStore();
+  const { ready, user } = useStore();
   const [menuOpen, setMenuOpen] = useState(false);
   const isPublic = pathname.startsWith("/rsvp");
+
+  const raw = usePresence(user);
+  const others = useMemo(() => {
+    const seen = new Set<string>();
+    return raw.filter(
+      (o) => o.user !== user && !seen.has(o.user) && !!seen.add(o.user)
+    );
+  }, [raw, user]);
 
   // Close the drawer on route change and lock body scroll while open
   useEffect(() => setMenuOpen(false), [pathname]);
@@ -153,8 +182,10 @@ export default function Shell({ children }: { children: ReactNode }) {
               </button>
             </div>
             <NavLinks pathname={pathname} onNavigate={() => setMenuOpen(false)} />
-            <div className="mt-auto pt-6">
+            <div className="mt-auto space-y-5 pt-6">
+              <Vine />
               <UserToggle />
+              <PresenceLine others={others} />
             </div>
           </div>
         </div>
@@ -174,14 +205,18 @@ export default function Shell({ children }: { children: ReactNode }) {
 
         <NavLinks pathname={pathname} />
 
-        <div className="mt-auto">
+        <div className="mt-auto space-y-5">
+          <Vine />
           <UserToggle />
+          <PresenceLine others={others} />
         </div>
       </aside>
 
       <main className="min-w-0 flex-1 px-4 py-6 sm:px-6 sm:py-8 lg:px-10 lg:py-10">
         {ready ? children : null}
       </main>
+
+      <Toasts />
     </div>
   );
 }

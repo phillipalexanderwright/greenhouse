@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useStore } from "@/lib/store";
 import { Card, PageHeader, Pill, Empty, statusLabel } from "@/components/ui";
-import { Tending, Almanac } from "@/components/HomeCards";
+import { Tending, Almanac, Seed } from "@/components/HomeCards";
 import {
   PLATFORMS,
   PLATFORM_LABEL,
@@ -130,6 +130,8 @@ export default function ThisMonth() {
             <Tending />
           </div>
 
+          <Seed />
+
           <Card>
             <div className="label-caps mb-3">Recently finished</div>
             {recentDone.length === 0 ? (
@@ -191,7 +193,7 @@ export default function ThisMonth() {
             </p>
           </Card>
 
-          <Card className="lg:col-span-3">
+          <Card className="lg:col-span-2">
             <div className="mb-3 flex items-center justify-between">
               <div className="label-caps">Sprouting ideas</div>
               <Link href="/ideas" className="text-xs underline text-ink/50">
