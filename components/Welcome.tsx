@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { isPublicPath } from "@/lib/public";
 
 // Fixed drift lanes; the season decides what travels along them and which way.
 const LANES = [
@@ -82,7 +83,7 @@ export default function Welcome() {
   }, []);
 
   if (phase === "idle" || phase === "done") return null;
-  if (pathname.startsWith("/rsvp")) return null;
+  if (isPublicPath(pathname)) return null;
 
   return (
     <div

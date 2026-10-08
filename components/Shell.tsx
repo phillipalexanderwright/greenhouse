@@ -6,6 +6,7 @@ import { ReactNode, useEffect, useMemo, useState } from "react";
 import { useStore } from "@/lib/store";
 import { UserName } from "@/lib/types";
 import { usePresence, PresenceEntry } from "@/lib/presence";
+import { isPublicPath } from "@/lib/public";
 import Toasts from "@/components/Toasts";
 import Vine from "@/components/Vine";
 
@@ -121,7 +122,7 @@ export default function Shell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const { ready, user } = useStore();
   const [menuOpen, setMenuOpen] = useState(false);
-  const isPublic = pathname.startsWith("/rsvp");
+  const isPublic = isPublicPath(pathname);
 
   const raw = usePresence(user);
   const others = useMemo(() => {

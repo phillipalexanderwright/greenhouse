@@ -10,6 +10,7 @@ import {
   ReactNode,
 } from "react";
 import { supabase, isLive } from "./supabase";
+import { isPublicPath } from "./public";
 import { Tables, TableName, TABLE_NAMES, UserName } from "./types";
 import { seedData } from "./seed";
 import { toast } from "./toast";
@@ -108,8 +109,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    // Public pages (guest RSVP) fetch their own narrow data — don't pull the studio.
-    if (window.location.pathname.startsWith("/rsvp")) return;
+    // Public pages (landing, RSVP, gate) fetch their own narrow data — don't pull the studio.
+    if (isPublicPath(window.location.pathname)) return;
     const sb = supabase;
     if (isLive && sb) {
       let cancelled = false;

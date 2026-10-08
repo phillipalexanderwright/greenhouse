@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import type { RealtimeChannel } from "@supabase/supabase-js";
 import { supabase } from "./supabase";
+import { isPublicPath } from "./public";
 import { UserName } from "./types";
 
 export interface PresenceEntry {
@@ -22,8 +23,8 @@ export function usePresence(user: UserName): PresenceEntry[] {
   useEffect(() => {
     const sb = supabase;
     if (!sb) return;
-    // Guests on the public RSVP page are not "in the greenhouse."
-    if (window.location.pathname.startsWith("/rsvp")) return;
+    // Visitors on public pages are not "in the greenhouse."
+    if (isPublicPath(window.location.pathname)) return;
     const key = crypto.randomUUID();
     const channel = sb.channel("greenhouse-presence", {
       config: { presence: { key } },
