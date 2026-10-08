@@ -131,7 +131,7 @@ export default function LandingPage() {
               className="h-9 w-9 object-contain"
             />
             <span className="font-display text-lg font-semibold tracking-[0.18em]">
-              2ND NATURE
+              SECOND NATURE
             </span>
           </a>
           <nav className="ml-auto hidden items-center gap-6 text-sm sm:flex">
@@ -458,7 +458,7 @@ export default function LandingPage() {
           a more natural tomorrow
         </p>
         <p className="label-caps mt-3">
-          2nd Nature · San Diego · Plants · Spaces · People
+          Second Nature · San Diego · Plants · Spaces · People
         </p>
         <a
           href="/gate"
