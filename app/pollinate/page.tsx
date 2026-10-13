@@ -145,7 +145,7 @@ export default function PollinatePage() {
     <div>
       <PageHeader
         title="Pollinate"
-        subtitle="Instagram & TikTok — growth, content, strategy"
+        subtitle="Instagram & TikTok: growth, content, strategy"
         action={
           <div className="flex max-w-full gap-1 overflow-x-auto rounded-full border border-earth/40 bg-cream p-1">
             {tabs.map((t) => (
@@ -212,7 +212,7 @@ export default function PollinatePage() {
             </div>
           </div>
           <p className="mt-2 text-[11px] text-ink/45">
-            Saves over followers — people keeping what you made.
+            Saves over followers. People keeping what you made.
           </p>
         </Card>
       </div>
@@ -283,7 +283,7 @@ function DailyTab() {
   return (
     <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
       <Card className="h-fit lg:col-span-1">
-        <div className="label-caps mb-3">Today&apos;s numbers — 60 seconds</div>
+        <div className="label-caps mb-3">Today&apos;s numbers in 60 seconds</div>
         <div className="space-y-3">
           <div className="flex gap-2">
             <Select
@@ -333,8 +333,8 @@ function DailyTab() {
           </Button>
           {existing && (
             <p className="text-[11px] text-ink/45">
-              A snapshot for {PLATFORM_LABEL[platform]} on {date} exists —
-              saving will overwrite it.
+              A snapshot for {PLATFORM_LABEL[platform]} on {date} exists.
+              Saving will overwrite it.
             </p>
           )}
           <p className="text-[11px] text-ink/45">
@@ -348,7 +348,7 @@ function DailyTab() {
         <div className="label-caps mb-3">Recent snapshots</div>
         {recent.length === 0 ? (
           <Empty>
-            No snapshots yet. Log today&apos;s numbers — the garden grows one
+            No snapshots yet. Log today&apos;s numbers. The garden grows one
             day at a time.
           </Empty>
         ) : (
@@ -534,7 +534,7 @@ function ContentTab() {
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
         <div>
           <h2 className="mb-3 font-display text-2xl font-semibold">
-            Calendar — planned{" "}
+            Calendar, planned{" "}
             <span className="text-base text-ink/40">{planned.length}</span>
           </h2>
           <div className="space-y-2">
@@ -720,7 +720,7 @@ function SignalsTab() {
       )}
       <DeeperRead />
       <p className="mt-6 text-[11px] text-ink/45">
-        Signals are computed from your snapshots and post metrics — follower
+        Signals are computed from your snapshots and post metrics: follower
         velocity, engagement trend (14d vs prior 14d), best format & pillar,
         posting momentum, and saves.
       </p>
@@ -764,7 +764,7 @@ function DeeperRead() {
         ? (res.text ?? "")
         : res.reason === "no-key"
           ? NO_KEY_MESSAGE
-          : "The Scribe lost the thread — try again in a moment."
+          : "The Scribe lost the thread. Try again in a moment."
     );
   };
 
@@ -819,7 +819,7 @@ function ScribeTab() {
     setResult(null);
     setCopied(false);
     const context = [
-      month ? `Current month: ${month.name} — theme "${month.theme}"` : "",
+      month ? `Current month: ${month.name}, theme "${month.theme}"` : "",
       month?.song ? `Song of the month: ${month.song}` : "",
       `Platform: ${PLATFORM_LABEL[platform]}, format: ${format}`,
       pillar ? `Content pillar: ${pillar}` : "",
@@ -833,7 +833,7 @@ function ScribeTab() {
         ? (res.text ?? "")
         : res.reason === "no-key"
           ? NO_KEY_MESSAGE
-          : "The Scribe lost the thread — try again in a moment."
+          : "The Scribe lost the thread. Try again in a moment."
     );
   };
 
@@ -893,7 +893,7 @@ function ScribeTab() {
           </Button>
           <p className="text-[11px] text-ink/45">
             The Scribe knows the month&apos;s theme, the song, and the 2N voice.
-            It drafts — you decide.
+            It drafts, you decide.
           </p>
         </div>
       </Card>
@@ -918,7 +918,7 @@ function ScribeTab() {
         ) : (
           <Empty>
             Give the Scribe an idea and it returns three captions in the 2N
-            voice — one poetic, one conversational, one minimal.
+            voice: one poetic, one conversational, one minimal.
           </Empty>
         )}
       </Card>
@@ -992,13 +992,13 @@ function ExperimentsTab() {
     <div>
       <Card className="mb-6 space-y-3">
         <Input
-          placeholder="Experiment — e.g. Post reels at golden hour for two weeks"
+          placeholder="Experiment, e.g. Post reels at golden hour for two weeks"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <Input
-            placeholder="Hypothesis — what do you expect, and why?"
+            placeholder="Hypothesis: what do you expect, and why?"
             value={hypothesis}
             onChange={(e) => setHypothesis(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && add()}
@@ -1053,7 +1053,7 @@ function ExperimentsTab() {
           </h2>
           <div className="space-y-3">
             {decided.length === 0 ? (
-              <Empty>Verdicts will gather here — your playbook.</Empty>
+              <Empty>Verdicts will gather here. Your playbook.</Empty>
             ) : (
               decided.map((e) => (
                 <Card key={e.id}>

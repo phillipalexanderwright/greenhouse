@@ -92,7 +92,7 @@ export default function BoxPage() {
     <div>
       <PageHeader
         title="The Box"
-        subtitle="The monthly mailer — whimsy, assembled"
+        subtitle="The monthly mailer. Whimsy, assembled"
         action={
           <div className="flex items-center gap-2">
             {months.length > 0 && (
@@ -128,7 +128,7 @@ export default function BoxPage() {
       )}
 
       {!month ? (
-        <Empty>No months yet — plant one above.</Empty>
+        <Empty>No months yet. Plant one above.</Empty>
       ) : (
         <div className="space-y-6">
           <Card>
@@ -147,7 +147,7 @@ export default function BoxPage() {
                 <div className="label-caps mb-1">Song of the month</div>
                 <Input
                   value={month.song}
-                  placeholder="Song — Artist"
+                  placeholder="Song · Artist"
                   onChange={(e) =>
                     update("months", month.id, { song: e.target.value })
                   }

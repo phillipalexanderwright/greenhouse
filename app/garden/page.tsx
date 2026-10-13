@@ -409,7 +409,7 @@ function RsvpLink({ dinnerId }: { dinnerId: string }) {
     <button
       onClick={copy}
       className="gh-press rounded-full border border-earth/40 px-3 py-1 text-xs transition-colors hover:bg-sage/60"
-      title="Copy the public RSVP link — guests confirm themselves"
+      title="Copy the public RSVP link. Guests confirm themselves"
     >
       {copied ? "Link copied ✓" : "❀ Copy RSVP link"}
     </button>

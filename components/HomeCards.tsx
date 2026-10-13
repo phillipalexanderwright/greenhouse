@@ -19,13 +19,13 @@ const SEEDS = [
   "Name a color you saw today that doesn't have a name yet.",
   "What would the table look like if the theme were 'first frost'?",
   "Who do you know that should meet someone else you know?",
-  "What did you collect as a kid — could the box hold it?",
+  "What did you collect as a kid? Could the box hold it?",
   "Describe the last time a stranger made your day.",
   "If this month were a dried flower, which one?",
   "What's the smallest thing that could make a dinner unforgettable?",
   "Write the toast you'd give at the next Garden.",
   "What should guests take home in their pocket?",
-  "A postcard from ten years ahead — what does it say?",
+  "A postcard from ten years ahead. What does it say?",
   "What sound belongs in the next box?",
   "Which corner of San Diego hasn't met us yet?",
   "What would you teach at a 2nd Nature workshop?",
@@ -99,7 +99,7 @@ export function Tending() {
   const snappedToday = data.social_snapshots.some((s) => s.date === today);
   if (!snappedToday) {
     chores.push({
-      text: "No social snapshot logged today — 60 seconds in Pollinate.",
+      text: "No social snapshot logged today. 60 seconds in Pollinate.",
       href: "/pollinate",
       label: "Pollinate",
     });
@@ -116,7 +116,7 @@ export function Tending() {
     const unanswered = guests.filter((g) => g.rsvp === "invited").length;
     if (unanswered > 0) {
       chores.push({
-        text: `${dinner.title} is in ${days} day${days === 1 ? "" : "s"} — ${unanswered} invite${unanswered === 1 ? "" : "s"} unanswered.`,
+        text: `${dinner.title} is in ${days} day${days === 1 ? "" : "s"} with ${unanswered} invite${unanswered === 1 ? "" : "s"} unanswered.`,
         href: "/garden",
         label: "The Garden",
       });
@@ -141,7 +141,7 @@ export function Tending() {
   );
   if (stale.length > 0) {
     chores.push({
-      text: `${stale.length} to-do${stale.length === 1 ? " has" : "s have"} sat for 3+ weeks — do or compost.`,
+      text: `${stale.length} to-do${stale.length === 1 ? " has" : "s have"} sat for 3+ weeks. Do or compost.`,
       href: "/todos",
       label: "To-Dos",
     });
@@ -256,7 +256,7 @@ export function Almanac() {
       setError(
         res.reason === "no-key"
           ? NO_KEY_MESSAGE
-          : "The Almanac lost the thread — try again in a moment."
+          : "The Almanac lost the thread. Try again in a moment."
       );
     }
   };
@@ -264,7 +264,7 @@ export function Almanac() {
   return (
     <Card className="lg:col-span-3">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-        <div className="label-caps">The Almanac — weekly note</div>
+        <div className="label-caps">The Almanac · weekly note</div>
         <Button onClick={write} disabled={loading}>
           {loading
             ? "Writing…"
@@ -280,14 +280,14 @@ export function Almanac() {
             {latest.body}
           </p>
           <p className="mt-3 text-[11px] text-ink/45">
-            Week of {latest.week_of} — asked for by {latest.created_by}
+            Week of {latest.week_of}, asked for by {latest.created_by}
           </p>
         </div>
       ) : (
         !error && (
           <Empty>
-            Once a week, the Almanac reads everything — box, garden, to-dos,
-            social — and writes you two a short note on what matters.
+            Once a week, the Almanac reads everything (box, garden, to-dos,
+            social) and writes you two a short note on what matters.
           </Empty>
         )
       )}

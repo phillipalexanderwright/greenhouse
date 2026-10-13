@@ -109,8 +109,8 @@ export default function RsvpPage() {
               </p>
               <div className="mx-auto mt-5 h-px w-24 bg-earth/50" />
               <p className="mt-5 text-sm leading-relaxed text-ink/70">
-                Ten guests, each with a plus-one. Dinner, flowers, and good
-                company — bring your second nature.
+                Ten guests, each with a plus one. Dinner, flowers, and good
+                company. Bring your second nature.
               </p>
 
               <div className="mt-7 space-y-3 text-left">
@@ -139,7 +139,7 @@ export default function RsvpPage() {
                   <input
                     value={plusOne}
                     onChange={(e) => setPlusOne(e.target.value)}
-                    placeholder="plus-one's name (optional)"
+                    placeholder="plus one's name (optional)"
                     className="w-full rounded-lg border border-earth/40 bg-white/80 px-3 py-2 text-sm outline-none placeholder:text-ink/35 focus:border-olive-deep"
                   />
                 )}
@@ -163,8 +163,8 @@ export default function RsvpPage() {
               </h1>
               <p className="mt-3 text-sm leading-relaxed text-ink/70">
                 {answered === "yes"
-                  ? "A seat is set. Details will come from your host — until then, keep an evening free and an appetite ready."
-                  : "Thank you for telling us. The garden will bloom again next month — we'll save you a seat then."}
+                  ? "A seat is set. Details will come from your host. Until then, keep an evening free and an appetite ready."
+                  : "Thank you for telling us. The garden will bloom again next month, and we'll save you a seat then."}
               </p>
               <div className="mt-6 text-2xl text-olive">❀</div>
             </>

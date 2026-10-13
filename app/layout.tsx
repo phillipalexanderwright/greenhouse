@@ -17,8 +17,8 @@ const karla = Karla({
 });
 
 export const metadata: Metadata = {
-  title: "The Greenhouse — 2nd Nature",
-  description: "Plants · Spaces · People — the 2nd Nature studio tool",
+  title: "The Greenhouse · Second Nature",
+  description: "Plants · Spaces · People. The Second Nature studio tool",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

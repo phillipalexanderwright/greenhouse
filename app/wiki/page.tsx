@@ -102,12 +102,12 @@ function WhoWeAreTab() {
       <Section title="The Thesis">
         <p className="text-sm leading-relaxed">
           In an ever-digitalizing world, Second Nature reconnects people with
-          in-real-life experiences — nature, art, ritual, and community. The
+          in-real-life experiences: nature, art, ritual, and community. The
           name is the thesis: connection to nature is in our biology.
           It&rsquo;s second nature.
         </p>
         <p className="text-sm italic text-ink/60">
-          2nd Nature — Plants · Spaces · People. &ldquo;A more natural
+          Second Nature · Plants · Spaces · People. &ldquo;A more natural
           tomorrow.&rdquo;
         </p>
       </Section>
@@ -122,7 +122,7 @@ function WhoWeAreTab() {
             ],
             [
               <strong key="h">Hank</strong>,
-              "Creative lead. Horticulturist — builds the living side of the product and the community around it",
+              "Creative lead. Horticulturist. Builds the living side of the product and the community around it",
             ],
           ]}
         />
@@ -132,7 +132,7 @@ function WhoWeAreTab() {
         <Card>
           <p className="text-sm leading-relaxed">
             <strong>The monthly envelope.</strong> A tangible mailer that makes
-            life whimsical again — flash tattoos, embossed postcards, pressed
+            life whimsical again: flash tattoos, embossed postcards, pressed
             flowers, poems, seed packets, a song of the month. It doubles as a
             giftable product.
           </p>
@@ -140,7 +140,7 @@ function WhoWeAreTab() {
         <Card>
           <p className="text-sm leading-relaxed">
             <strong>The Garden.</strong> Each month culminates in a dinner
-            party: 10 invited guests, each with a plus-one — twenty people
+            party: 10 invited guests, each with a plus one. Twenty people
             meeting new people, expanding the community organically. Future
             formats: ceramic lessons, wine tastings, other
             get-people-out-and-about experiences.
@@ -180,9 +180,9 @@ function WhoWeAreTab() {
         <Card>
           <ul className="space-y-2 text-sm">
             {[
-              "Not chasing scale — the goal is creation and genuine human connection, not subscriber count.",
+              "Not chasing scale. The goal is creation and genuine human connection, not subscriber count.",
               "Community-first, San Diego-rooted.",
-              "Everything tangible, crafted, intentional — the opposite of a digital feed.",
+              "Everything tangible, crafted, intentional. The opposite of a digital feed.",
             ].map((line) => (
               <li key={line} className="flex gap-2">
                 <span className="text-olive-deep">❧</span>
@@ -204,7 +204,7 @@ function BrandTab() {
           <LogoCard
             src="/brand/logo-primary-wordmark.png"
             name="Primary wordmark"
-            usage="The full lockup — covers, website masthead, the box lid. Anywhere the brand introduces itself."
+            usage="The full lockup: covers, website masthead, the box lid. Anywhere the brand introduces itself."
           />
           <LogoCard
             src="/brand/logo-arch-badge.png"
@@ -214,11 +214,11 @@ function BrandTab() {
           <LogoCard
             src="/brand/logo-monogram.png"
             name="Monogram"
-            usage="The 2N mark alone — wax seals, embossing, poem-card corners, favicon."
+            usage="The 2N mark alone: wax seals, embossing, poem-card corners, favicon."
           />
         </div>
         <p className="text-sm italic text-ink/60">
-          Watercolor botanicals on cream — never flattened into corporate
+          Watercolor botanicals on cream, never flattened into corporate
           vector-cleanliness. Source files: brand-assets/ in the project
           folder.
         </p>
@@ -258,7 +258,7 @@ function BrandTab() {
 
       <Section title="Voice">
         <p className="text-sm leading-relaxed">
-          Warm, poetic, unhurried, whimsical — never corporate, never
+          Warm, poetic, unhurried, whimsical. Never corporate, never
           &ldquo;growth-hacky.&rdquo; Copy reads like a letter from a friend
           who presses flowers, not a brand that wants your attention.
         </p>
@@ -281,7 +281,7 @@ function FeasibilityTab() {
               {[
                 "Flash tattoo of the month (real temporary tattoo)",
                 "Poem card on heavy cardstock",
-                "Seed packet — seasonal SD natives, curated by Hank",
+                "Seed packet: seasonal SD natives, curated by Hank",
                 "Pressed flowers in glassine, pressed by Hank",
                 "Sticker of the month",
                 "Embossed San Diego postcard",
@@ -298,7 +298,7 @@ function FeasibilityTab() {
           </Card>
           <p className="text-sm italic text-ink/60">
             Wine of the month and fresh bouquets live at The Garden dinner, not
-            in the mail — see Flags.
+            in the mail. See Flags.
           </p>
         </Section>
 
@@ -314,7 +314,7 @@ function FeasibilityTab() {
                 "Flash tattoo",
                 "$0.86–1.70",
                 <Ext key="t" href="https://www.stickeryou.com/products/custom-temporary-tattoos/714">
-                  StickerYou — $17.24/page of 20
+                  StickerYou, $17.24/page of 20
                 </Ext>,
               ],
               [
@@ -339,12 +339,12 @@ function FeasibilityTab() {
                 "Sticker",
                 "$0.10–2.00",
                 <Ext key="s" href="https://www.stickermule.com/products/die-cut-stickers">
-                  Sticker Mule — buy on recurring deals ($9/50)
+                  Sticker Mule, buy on recurring deals ($9/50)
                 </Ext>,
               ],
               ["Embossed SD postcard", "$0.82–2.20", "Moo + emboss in-house"],
               ["Playlist card", "$0.10–0.30", "Home print, QR code"],
-              ["Envelope (A7 kraft)", "$0.33", "JAM Paper — $33/100"],
+              ["Envelope (A7 kraft)", "$0.33", "JAM Paper, $33/100"],
               ["Wax seal", "$0.20–0.40", "Wax beads + custom stamp"],
               [
                 "Postage",
@@ -368,11 +368,11 @@ function FeasibilityTab() {
                   Founding Member <Pill tone="blush">first 10</Pill>
                 </span>,
                 "$15/mo",
-                "Locked for year one — the evangelists and dinner guests",
+                "Locked for year one, for the evangelists and dinner guests",
               ],
               ["Standard", "$18/mo", "Opens after the founding 10"],
               ["Annual", "$150/yr", "Two months free; cash up front funds tooling"],
-              ["Gift, 3 months", "$54", "$18 × 3 — zero new product work"],
+              ["Gift, 3 months", "$54", "$18 × 3, zero new product work"],
               [
                 "Garden dinner seat",
                 "$50",
@@ -385,7 +385,7 @@ function FeasibilityTab() {
             <Ext href="https://mailclubhub.com/state-of-mail-clubs/">
               $10/mo, ~$16 ceiling
             </Ext>{" "}
-            — only 11% charge over $15. Closest comps:{" "}
+            (only 11% charge over $15). Closest comps:{" "}
             <Ext href="https://hopesteinle.com/products/thewildflowerpost">
               The Wildflower Post
             </Ext>{" "}
@@ -393,7 +393,7 @@ function FeasibilityTab() {
             <Ext href="https://sandiegoseedcompany.com/product/rare-seeds/seed-of-the-month-vip-club/">
               SD Seed Co. VIP club
             </Ext>{" "}
-            $15/mo. $18 sits just above the ceiling — justified by ten items,
+            $15/mo. $18 sits just above the ceiling, justified by ten items,
             the wax seal, and the attached community. SoCal curated dinner seats
             run $90–250, so $50 is a generous entry.
           </p>
@@ -403,12 +403,12 @@ function FeasibilityTab() {
           <p className="text-sm">
             Profitable from month two; <strong>~$380 over six months</strong>{" "}
             (42% margin after tooling). ~$560 at the $18 standard rate. Small on
-            purpose — not chasing scale.
+            purpose, not chasing scale.
           </p>
           <Table
             head={["Line", "Per month", "6 months"]}
             rows={[
-              ["Revenue — 10 × $15", "$150", "$900"],
+              ["Revenue (10 × $15)", "$150", "$900"],
               ["Materials (~$6/envelope)", "−$60", "−$360"],
               ["Postage (hybrid, ~half mailed)", "−$8", "−$50"],
               ["One-time tooling", "—", "−$110"],
@@ -421,30 +421,30 @@ function FeasibilityTab() {
           />
         </Section>
 
-        <Section title="The Garden — dinner economics">
+        <Section title="The Garden: dinner economics">
           <p className="text-sm leading-relaxed">
             Ticketed separately at $50/seat so the dinner funds itself.
-            Subscribers get first access; plus-ones pay too. Wine of the month
+            Subscribers get first access; plus ones pay too. Wine of the month
             is poured here (the only legal home for it) with a tasting card in
             the envelope; fresh bouquets are chair gifts at the table.
           </p>
           <Table
             head={["Line", "Per event"]}
             rows={[
-              ["Revenue — 20 seats × $50", "$1,000"],
+              ["Revenue (20 seats × $50)", "$1,000"],
               ["Food (20 covers)", "−$500 to −$800"],
               ["Wine + incidentals", "−$100 to −$200"],
               [<strong key="n">Net</strong>, <strong key="nv">~$0 to +$400</strong>],
             ]}
           />
           <p className="text-sm italic text-ink/60">
-            Margin is thin at $50 — keep pours curated, not endless.
+            Margin is thin at $50. Keep pours curated, not endless.
           </p>
         </Section>
 
-        <Section title="Seed calendar — SD natives, curated by Hank">
+        <Section title="Seed calendar: SD natives, curated by Hank">
           <p className="text-sm">
-            SoCal natives are mostly fall-sown to germinate with winter rain —
+            SoCal natives are mostly fall-sown to germinate with winter rain, so
             the packet copy writes itself: &ldquo;plant me before the
             rains.&rdquo;
           </p>
@@ -466,7 +466,7 @@ function FeasibilityTab() {
               [
                 "Apr–Jun",
                 "Narrowleaf milkweed",
-                "Monarch host plant — newsletter story built in",
+                "Monarch host plant, newsletter story built in",
               ],
               [
                 "Jul–Sep",
@@ -489,9 +489,9 @@ function FeasibilityTab() {
           <Card>
             <ul className="space-y-2 text-sm">
               {[
-                ["Wine cannot be mailed — full stop.", "USPS prohibits all alcohol; FedEx/UPS ship only for licensed businesses. Wine lives at The Garden."],
+                ["Wine cannot be mailed, full stop.", "USPS prohibits all alcohol; FedEx/UPS ship only for licensed businesses. Wine lives at The Garden."],
                 ["Fresh bouquets don't fit an envelope.", "Chair gifts at the dinner; pressed flowers are the mailable version of the gesture."],
-                ["Nonmachinable postage.", "Seeds and wax seals make it lumpy — budget $1.60–1.90, never the $0.82 letter rate."],
+                ["Nonmachinable postage.", "Seeds and wax seals make it lumpy. Budget $1.60 to $1.90, never the $0.82 letter rate."],
                 ["Hank's labor is unpriced.", "Sweat equity at 10 units; revisit if volume doubles."],
                 ["Sticker cost swings 20×.", "Buy on Sticker Mule deals, stock ahead."],
                 ["Pre-printed seed packets need a 50-unit minimum.", "DIY kraft route wins until volume grows."],
@@ -507,7 +507,7 @@ function FeasibilityTab() {
           </Card>
         </Section>
 
-        <Section title="Next steps — month one">
+        <Section title="Next steps: month one">
           <Card>
             <ol className="list-decimal space-y-1.5 pl-5 text-sm">
               <li>Order tooling: embosser, wax seal stamp, flower press (~$110)</li>
@@ -517,7 +517,7 @@ function FeasibilityTab() {
               <li>Buy envelopes, kraft seed envelopes, glassine sleeves, wax beads</li>
               <li>Sign the founding 10 at $15/mo; set up payments</li>
               <li>Date, venue, menu for the first Garden dinner; sell 20 seats at $50</li>
-              <li>Assembly night: press, stuff, seal, emboss — a ritual, not a chore</li>
+              <li>Assembly night: press, stuff, seal, emboss. A ritual, not a chore</li>
             </ol>
           </Card>
         </Section>

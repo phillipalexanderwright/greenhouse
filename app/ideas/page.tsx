@@ -14,7 +14,7 @@ import {
 import { Idea } from "@/lib/types";
 
 const LANES: { key: Idea["status"]; title: string; blurb: string }[] = [
-  { key: "compost", title: "Compost", blurb: "Raw — toss anything in" },
+  { key: "compost", title: "Compost", blurb: "Raw. Toss anything in" },
   { key: "sprouting", title: "Sprouting", blurb: "Worth developing" },
   { key: "used", title: "Bloomed", blurb: "Made it into the world" },
 ];
@@ -40,12 +40,12 @@ export default function IdeasPage() {
     <div>
       <PageHeader
         title="The Compost Pile"
-        subtitle="Every idea is organic matter — nothing is wasted"
+        subtitle="Every idea is organic matter. Nothing is wasted"
       />
 
       <Card className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
         <Input
-          placeholder="Toss in an idea — a song, a format, a flower, a feeling…"
+          placeholder="Toss in an idea: a song, a format, a flower, a feeling…"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && add()}

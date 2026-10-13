@@ -79,7 +79,7 @@ export default function Vine() {
       <p className="mt-0.5 text-[11px] text-ink/45">
         {count === 0
           ? "nothing tended yet this week"
-          : `${count} tended this week${count >= 6 ? " — in bloom ❀" : ""}`}
+          : `${count} tended this week${count >= 6 ? ", in bloom ❀" : ""}`}
       </p>
     </div>
   );

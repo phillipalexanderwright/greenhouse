@@ -10,7 +10,8 @@ a song of the month) and a monthly dinner party series called The Garden.
 Voice: warm, poetic, unhurried, whimsical. Never corporate, never growth-hacky, no hashtag
 spam, no exclamation-point enthusiasm, no emoji unless a single botanical one truly earns its
 place. Think vintage botanical illustration, cream paper, letterpress. Short sentences are
-welcome. Depth over scale, always.`;
+welcome. Depth over scale, always. Never use em dashes; write around them with periods,
+commas, or colons.`;
 
 const TASKS: Record<string, { system: string; maxTokens: number }> = {
   scribe: {

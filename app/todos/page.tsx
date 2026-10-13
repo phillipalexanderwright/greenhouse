@@ -66,7 +66,7 @@ export default function TodosPage() {
     <div>
       <PageHeader
         title="To-Dos"
-        subtitle="Who's doing what — in real time"
+        subtitle="Who's doing what, in real time"
       />
 
       <Card className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">

@@ -51,7 +51,7 @@ export default function PeoplePage() {
     <div>
       <PageHeader
         title="People"
-        subtitle="The community — every guest, friend, and collaborator"
+        subtitle="The community: every guest, friend, and collaborator"
         action={
           <div className="flex gap-2">
             <Input
@@ -139,7 +139,7 @@ export default function PeoplePage() {
                   }
                 />
                 <TextArea
-                  placeholder="Notes — loves ceramics, brought wine, met at…"
+                  placeholder="Notes: loves ceramics, brought wine, met at…"
                   value={p.notes}
                   onChange={(e) =>
                     update("people", p.id, { notes: e.target.value })

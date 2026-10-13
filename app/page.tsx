@@ -167,7 +167,7 @@ export default function ThisMonth() {
               </Link>
             </div>
             {myTodos.length === 0 ? (
-              <Empty>Nothing on your plate. Go touch grass — literally.</Empty>
+              <Empty>Nothing on your plate. Go touch grass, literally.</Empty>
             ) : (
               <ul className="space-y-2">
                 {myTodos.slice(0, 6).map((t, i) => (
@@ -234,7 +234,7 @@ export default function ThisMonth() {
 
           <Card className="lg:col-span-3">
             <div className="mb-3 flex items-center justify-between">
-              <div className="label-caps">Pollinate — this week</div>
+              <div className="label-caps">Pollinate this week</div>
               <Link href="/pollinate" className="text-xs underline text-ink/50">
                 open pollinate →
               </Link>

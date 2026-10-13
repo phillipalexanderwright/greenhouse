@@ -48,7 +48,7 @@ export default function LedgerPage() {
     <div>
       <PageHeader
         title="The Ledger"
-        subtitle="What the whimsy costs — boxes, dinners, per guest"
+        subtitle="What the whimsy costs: boxes, dinners, per guest"
       />
 
       <div className="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-3">

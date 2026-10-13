@@ -27,12 +27,12 @@ const PILLARS = [
   {
     mark: "❀",
     title: "Plants",
-    copy: "Living things in your hands — dried blooms, seeds of ideas, the slow rhythm of things that grow.",
+    copy: "Living things in your hands. Dried blooms, seeds of ideas, the slow rhythm of things that grow.",
   },
   {
     mark: "⚘",
     title: "Spaces",
-    copy: "Rooms and tables worth lingering in. Candlelight, paper, clay — places that ask you to stay a while.",
+    copy: "Rooms and tables worth lingering in. Candlelight, paper, clay, and places that ask you to stay a while.",
   },
   {
     mark: "☙",
@@ -42,10 +42,10 @@ const PILLARS = [
 ];
 
 const BOX_ITEMS = [
-  { mark: "✉", title: "Embossed postcards", copy: "Hand-drawn, pressed into cream paper — made to be mailed." },
+  { mark: "✉", title: "Embossed postcards", copy: "Hand drawn, pressed into cream paper, made to be mailed." },
   { mark: "✿", title: "Dried flowers", copy: "A small bouquet from the season, preserved at its best." },
   { mark: "✒", title: "A poem", copy: "Something short enough to memorize, good enough to want to." },
-  { mark: "♪", title: "Song of the month", copy: "One song, one playlist — the month's soundtrack." },
+  { mark: "♪", title: "Song of the month", copy: "One song, one playlist. The month's soundtrack." },
   { mark: "✺", title: "Flash tattoo ideas", copy: "Whimsical little designs, in case you're feeling brave." },
   { mark: "⚘", title: "Prompts to create", copy: "Invitations to draw, write, plant, and make with your hands." },
 ];
@@ -112,7 +112,7 @@ export default function LandingPage() {
       phone: "",
       tags: `landing, interest: ${interestLabel}`,
       notes: note.trim()
-        ? `Via landing page — "${note.trim()}"`
+        ? `Via landing page: "${note.trim()}"`
         : "Via landing page",
     });
     setForm(error ? "error" : "done");
@@ -195,7 +195,7 @@ export default function LandingPage() {
           </h1>
           <div className="ld-in-rule mx-auto mt-7 h-px w-40 bg-earth/60 sm:w-56" />
           <p className="ld-in-4 mx-auto mt-7 max-w-md font-display text-xl italic leading-relaxed text-ink/75 sm:text-2xl">
-            A San Diego studio reconnecting people with real life — nature,
+            A San Diego studio reconnecting people with real life. Nature,
             art, ritual, and one another.
           </p>
           <div className="ld-in-5 mt-10 flex flex-wrap items-center justify-center gap-3">
@@ -234,8 +234,8 @@ export default function LandingPage() {
               It&rsquo;s in your biology.
             </h2>
             <p className="mx-auto mt-6 max-w-xl leading-relaxed text-ink/70">
-              In an ever-digitalizing world, Second Nature is a quiet
-              counterweight — tangible things made by hand, evenings spent at
+              In an ever digitalizing world, Second Nature is a quiet
+              counterweight. Tangible things made by hand, evenings spent at
               long tables, and small rituals that make life whimsical again.
               It&rsquo;s not an app. It arrives in the mail, and it ends at
               dinner.
@@ -274,9 +274,9 @@ export default function LandingPage() {
               life whimsical again
             </h2>
             <p className="mx-auto mt-6 max-w-xl leading-relaxed text-ink/70">
-              Each month carries a theme, and each box carries it to your door
-              — printed, pressed, dried, and hand-assembled. No two months are
-              the same.
+              Each month carries a theme, and each box carries it to your
+              door. Printed, pressed, dried, and assembled by hand. No two
+              months are the same.
             </p>
           </Reveal>
 
@@ -298,7 +298,7 @@ export default function LandingPage() {
 
           <Reveal className="mt-12 text-center">
             <p className="font-display text-lg italic text-ink/70">
-              It also makes a lovely gift — a box that says
+              It also makes a lovely gift, a box that says
               <span className="text-olive-deep">
                 {" "}
                 &ldquo;go outside, make something.&rdquo;
@@ -337,13 +337,13 @@ export default function LandingPage() {
 
           <Reveal delay={150}>
             <p className="mx-auto mt-10 max-w-xl leading-relaxed text-ink/70">
-              The Garden is our monthly dinner party — ten invited guests, each
-              with a plus-one. Twenty people, flowers down the table, a menu
+              The Garden is our monthly dinner party. Ten invited guests, each
+              with a plus one. Twenty people, flowers down the table, a menu
               built around the month&rsquo;s theme. You arrive knowing one
               person and leave knowing twenty.
             </p>
             <p className="mx-auto mt-5 max-w-xl leading-relaxed text-ink/70">
-              And it&rsquo;s only the beginning — ceramics lessons, wine
+              And it&rsquo;s only the beginning. Ceramics lessons, wine
               tastings, and other excuses to be somewhere real are on the way.
             </p>
           </Reveal>
@@ -372,7 +372,7 @@ export default function LandingPage() {
                     You&rsquo;re on the list.
                   </h2>
                   <p className="mt-3 text-sm leading-relaxed text-ink/70">
-                    We&rsquo;ll write soon — on paper, probably. Until then,
+                    We&rsquo;ll write soon, on paper probably. Until then,
                     keep an evening free and an appetite ready.
                   </p>
                   <div className="mt-6 text-2xl text-olive">❀</div>
@@ -440,7 +440,7 @@ export default function LandingPage() {
                     </button>
                     {form === "error" && (
                       <p className="text-center text-xs text-ink/60">
-                        Something wilted — please try again, or write to us
+                        Something wilted. Please try again, or write to us
                         directly.
                       </p>
                     )}

@@ -19,7 +19,7 @@ export function describeChange(
     case "todos":
       if (event === "UPDATE" && row.done && !(old && old.done))
         return {
-          msg: `${row.done_by ?? "Someone"} watered the to-dos — "${row.title}" is done`,
+          msg: `${row.done_by ?? "Someone"} watered the to-dos. "${row.title}" is done`,
           glyph: "✓",
         };
       if (event === "INSERT")

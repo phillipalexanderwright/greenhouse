@@ -119,7 +119,7 @@ export function computeSignals(
         tone: "act",
         title: `${PLATFORM_LABEL[platform]} followers slipping (${fmtDelta(delta)} this week)`,
         detail:
-          "Look at the last few posts — did the voice drift? Steady, true-to-brand beats clever.",
+          "Look at the last few posts. Did the voice drift? Steady, true to brand beats clever.",
       });
     } else if (delta > 0) {
       out.push({
@@ -150,7 +150,7 @@ export function computeSignals(
       out.push({
         tone: "good",
         title: "Posting cadence is alive",
-        detail: `Last post ${daysSince === 0 ? "today" : `${daysSince} day${daysSince === 1 ? "" : "s"} ago`}. Keep the rhythm — consistency compounds.`,
+        detail: `Last post ${daysSince === 0 ? "today" : `${daysSince} day${daysSince === 1 ? "" : "s"} ago`}. Keep the rhythm. Consistency compounds.`,
       });
     }
   }
@@ -169,7 +169,7 @@ export function computeSignals(
         tone: "act",
         title: `Engagement down ${Math.abs(Math.round(change * 100))}% vs the prior two weeks`,
         detail:
-          "Revisit what was different a month ago — format, pillar, or posting time — and test it in Experiments.",
+          "Revisit what was different a month ago (format, pillar, or posting time) and test it in Experiments.",
       });
     } else if (change >= 0.2) {
       out.push({
@@ -186,7 +186,7 @@ export function computeSignals(
     out.push({
       tone: "watch",
       title: `Best format: ${bf.key} (${fmtPct(bf.rate)} avg engagement, ${bf.count} posts)`,
-      detail: "Lean the weekly mix toward it — but keep one wildcard slot for testing.",
+      detail: "Lean the weekly mix toward it, but keep one wildcard slot for testing.",
     });
   }
   const bp = bestGroup(posted, (p) => p.pillar);
@@ -207,7 +207,7 @@ export function computeSignals(
         tone: "watch",
         title: `Most-saved: "${topSaver.title}" (${topSaver.saves} saves)`,
         detail:
-          "Saves mean someone wants to return to it — the truest 2N metric. Study why this one earned them.",
+          "Saves mean someone wants to return to it, the truest 2N metric. Study why this one earned them.",
       });
     }
   }

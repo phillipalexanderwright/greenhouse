@@ -13,9 +13,9 @@ export const seedData: Tables = {
     {
       id: octoberId,
       name: "October 2026",
-      theme: "Harvest & Ember — the slow turn of the season",
+      theme: "Harvest & Ember, the slow turn of the season",
       status: "planning",
-      song: "Harvest Moon — Neil Young",
+      song: "Harvest Moon · Neil Young",
       notes: "First full cycle in The Greenhouse.",
       created_at: now,
     },
@@ -24,7 +24,7 @@ export const seedData: Tables = {
     {
       id: id(),
       month_id: octoberId,
-      title: "Embossed postcard — pressed marigold motif",
+      title: "Embossed postcard, pressed marigold motif",
       kind: "postcard",
       status: "idea",
       owner: "Hank",
@@ -35,7 +35,7 @@ export const seedData: Tables = {
     {
       id: id(),
       month_id: octoberId,
-      title: "Dried bouquet — strawflower + eucalyptus",
+      title: "Dried bouquet, strawflower + eucalyptus",
       kind: "dried_flowers",
       status: "sourcing",
       owner: "Hank",
@@ -61,7 +61,7 @@ export const seedData: Tables = {
       month_id: octoberId,
       title: "The Garden No. 1",
       date: "",
-      venue: "TBD — San Diego",
+      venue: "TBD, San Diego",
       menu: "",
       budget: 0,
       status: "planning",
@@ -105,7 +105,7 @@ export const seedData: Tables = {
       title: "Seed-paper insert that grows wildflowers",
       kind: "box",
       added_by: "Hank",
-      notes: "Plantable paper — the box literally grows.",
+      notes: "Plantable paper. The box literally grows.",
       status: "sprouting",
       created_at: now,
     },
@@ -149,7 +149,7 @@ export const seedData: Tables = {
     {
       id: botanistId,
       name: "The Botanist",
-      role: "Sourcing scout — finds flowers, paper stock, vendors, pricing",
+      role: "Sourcing scout. Finds flowers, paper stock, vendors, pricing",
       cadence: "Weekly",
       status: "idea",
       description:
@@ -159,7 +159,7 @@ export const seedData: Tables = {
     {
       id: scribeId,
       name: "The Scribe",
-      role: "Writes first drafts — poems, invites, postcard copy",
+      role: "Writes first drafts: poems, invites, postcard copy",
       cadence: "Monthly",
       status: "idea",
       description:
@@ -175,7 +175,7 @@ export const seedData: Tables = {
       platform: "instagram",
       format: "reel",
       pillar: "Box reveal",
-      title: "October box — slow unboxing over pressed marigolds",
+      title: "October box, slow unboxing over pressed marigolds",
       url: "",
       date: "",
       status: "planned",
@@ -194,7 +194,7 @@ export const seedData: Tables = {
       id: id(),
       title: "Do Garden recaps outperform box content?",
       hypothesis:
-        "Candlelit dinner recaps will earn more saves than product shots — people save what they want to feel.",
+        "Candlelit dinner recaps will earn more saves than product shots. People save what they want to feel.",
       status: "running",
       result: "",
       created_by: "Phillip",

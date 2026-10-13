@@ -65,17 +65,17 @@ export default function AgentsPage() {
     <div>
       <PageHeader
         title="Agents"
-        subtitle="The staff of The Greenhouse — who does what, and what they did"
+        subtitle="The staff of The Greenhouse: who does what, and what they did"
       />
 
       <Card className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center">
         <Input
-          placeholder="Agent name — e.g. The Botanist"
+          placeholder="Agent name, e.g. The Botanist"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <Input
-          placeholder="Role — what does it handle?"
+          placeholder="Role: what does it handle?"
           value={role}
           onChange={(e) => setRole(e.target.value)}
         />
@@ -112,7 +112,7 @@ export default function AgentsPage() {
                 </div>
 
                 <TextArea
-                  placeholder="Structure & instructions — what this agent does, step by step…"
+                  placeholder="Structure & instructions: what this agent does, step by step…"
                   rows={3}
                   value={a.description}
                   onChange={(e) =>
@@ -135,7 +135,7 @@ export default function AgentsPage() {
                     <option value="paused">paused</option>
                   </Select>
                   <Input
-                    placeholder="Cadence — weekly, monthly…"
+                    placeholder="Cadence: weekly, monthly…"
                     value={a.cadence}
                     onChange={(e) =>
                       update("agents", a.id, { cadence: e.target.value })

@@ -112,7 +112,7 @@ function UserToggle() {
         ))}
       </div>
       <p className="text-center text-[11px] text-ink/45">
-        {live ? "● Live — synced via Supabase" : "◦ Demo mode — local only"}
+        {live ? "● Live, synced via Supabase" : "◦ Demo mode, local only"}
       </p>
     </div>
   );

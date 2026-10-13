@@ -20,4 +20,4 @@ export async function askAI(task: AITask, prompt: string): Promise<AIResult> {
 }
 
 export const NO_KEY_MESSAGE =
-  "The Scribe is still asleep — add an ANTHROPIC_API_KEY to wake it.";
+  "The Scribe is still asleep. Add an ANTHROPIC_API_KEY to wake it.";
