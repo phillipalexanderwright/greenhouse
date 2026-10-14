@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { Petal, petalStyleFromSearch, type PetalStyle } from "@/components/Petal";
 
 // Drift lanes for the hero petals — same bones as the studio intro.
 const LANES = [
@@ -15,7 +16,7 @@ const LANES = [
   { left: "92%", size: "0.8rem", dur: "11s", delay: "8s", o: 0.3 },
 ];
 const GLYPHS = ["✿", "❀", "⚘", "❁", "❧", "✾", "☙", "✺"];
-const PETAL_COLORS = ["#A7B79D", "#E6C6C3", "#6b7a5e", "#BBAA92"];
+const PETAL_COLORS = ["#8B9A77", "#D79BA1", "#56654D", "#A64F5B", "#E7C36B", "#BBAA92"];
 
 const NAV = [
   { href: "#nature", label: "Our Nature" },
@@ -96,6 +97,11 @@ export default function LandingPage() {
   const [interest, setInterest] = useState<"box" | "garden" | "both">("both");
   const [note, setNote] = useState("");
   const [form, setForm] = useState<FormState>("idle");
+  const [petalStyle, setPetalStyle] = useState<PetalStyle>("glyphs");
+
+  useEffect(() => {
+    setPetalStyle(petalStyleFromSearch(window.location.search));
+  }, []);
 
   const submit = async () => {
     if (!name.trim() || !email.trim()) return;
@@ -160,22 +166,14 @@ export default function LandingPage() {
         className="ld-hero relative flex min-h-screen items-center justify-center overflow-hidden px-6"
       >
         {LANES.map((p, i) => (
-          <span
+          <Petal
             key={i}
-            className="intro-petal"
-            style={
-              {
-                left: p.left,
-                fontSize: p.size,
-                color: PETAL_COLORS[i % PETAL_COLORS.length],
-                "--petal-dur": p.dur,
-                "--petal-delay": p.delay,
-                "--petal-opacity": p.o,
-              } as React.CSSProperties
-            }
-          >
-            {GLYPHS[i % GLYPHS.length]}
-          </span>
+            lane={p}
+            index={i}
+            variant={petalStyle}
+            color={PETAL_COLORS[i % PETAL_COLORS.length]}
+            glyph={GLYPHS[i % GLYPHS.length]}
+          />
         ))}
 
         <div className="relative mx-auto max-w-2xl pb-16 pt-28 text-center">

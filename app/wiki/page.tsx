@@ -227,11 +227,13 @@ function BrandTab() {
       <Section title="Palette">
         <Card>
           <div className="flex flex-wrap justify-around gap-6">
-            <Swatch name="Sky" hex="#CFE2EE" />
-            <Swatch name="Sage" hex="#D8E2D1" />
-            <Swatch name="Olive" hex="#A7B79D" />
-            <Swatch name="Blush" hex="#E6C6C3" />
-            <Swatch name="Cream" hex="#FAF6ED" />
+            <Swatch name="Sage" hex="#A7B48F" />
+            <Swatch name="Moss" hex="#8B9A77" />
+            <Swatch name="Olive" hex="#56654D" />
+            <Swatch name="Dusty Pink" hex="#D79BA1" />
+            <Swatch name="Mauve" hex="#A64F5B" />
+            <Swatch name="Soft Yellow" hex="#E7C36B" />
+            <Swatch name="Cream" hex="#EFE6D5" />
             <Swatch name="Earth" hex="#BBAA92" />
           </div>
         </Card>

@@ -1,6 +1,6 @@
 // Petal celebrations — for finished to-dos, garden yeses, and harvests.
 const GLYPHS = ["❀", "✿", "❁", "✾"];
-const COLORS = ["#A7B79D", "#E6C6C3", "#6b7a5e", "#BBAA92"];
+const COLORS = ["#8B9A77", "#D79BA1", "#A64F5B", "#E7C36B", "#BBAA92"];
 
 function reduced() {
   return (

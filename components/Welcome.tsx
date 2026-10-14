@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { isPublicPath } from "@/lib/public";
+import { Petal, petalStyleFromSearch, type PetalStyle } from "@/components/Petal";
 
 // Fixed drift lanes; the season decides what travels along them and which way.
 const LANES = [
@@ -16,12 +17,14 @@ const LANES = [
   { left: "92%", size: "0.8rem", dur: "11s", delay: "8s", o: 0.3 },
 ];
 
-// Brand palette
-const OLIVE = "#A7B79D";
-const OLIVE_DEEP = "#6b7a5e";
+// Brand palette (lily board)
+const MOSS = "#8B9A77";
+const OLIVE = "#56654D";
 const EARTH = "#BBAA92";
-const BLUSH = "#E6C6C3";
-const SKY = "#CFE2EE";
+const DUSTY_PINK = "#D79BA1";
+const MAUVE = "#A64F5B";
+const SOFT_YELLOW = "#E7C36B";
+const SAGE_WASH = "#D9D7C0";
 
 type Season = "spring" | "summer" | "autumn" | "winter";
 
@@ -30,19 +33,27 @@ const SEASONS: Record<
   { glyphs: string[]; colors: string[]; fall: boolean }
 > = {
   // petals rise like things growing
-  spring: { glyphs: ["✿", "❀", "⚘", "❁"], colors: [OLIVE, BLUSH], fall: false },
+  spring: {
+    glyphs: ["✿", "❀", "⚘", "❁"],
+    colors: [MOSS, DUSTY_PINK],
+    fall: false,
+  },
   summer: {
     glyphs: ["✺", "❁", "✾", "❀"],
-    colors: [OLIVE_DEEP, BLUSH],
+    colors: [OLIVE, DUSTY_PINK, SOFT_YELLOW],
     fall: false,
   },
   // leaves and snow fall like the season turning
   autumn: {
     glyphs: ["❧", "☙", "✾", "❧"],
-    colors: [EARTH, OLIVE_DEEP],
+    colors: [EARTH, OLIVE, MAUVE],
     fall: true,
   },
-  winter: { glyphs: ["❄", "❅", "✦", "❄"], colors: [SKY, EARTH], fall: true },
+  winter: {
+    glyphs: ["❄", "❅", "✦", "❄"],
+    colors: [SAGE_WASH, EARTH],
+    fall: true,
+  },
 };
 
 function currentSeason(): Season {
@@ -58,6 +69,7 @@ export default function Welcome() {
   const [phase, setPhase] = useState<"idle" | "show" | "leaving" | "done">(
     "idle"
   );
+  const [petalStyle, setPetalStyle] = useState<PetalStyle>("glyphs");
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const leave = () => {
@@ -70,6 +82,7 @@ export default function Welcome() {
     // it (this layout component only mounts once per load).
     // ?intro holds the scene until tapped — for showing it off.
     const forced = new URLSearchParams(window.location.search).has("intro");
+    setPetalStyle(petalStyleFromSearch(window.location.search));
     setPhase("show");
     if (!forced) {
       const t = setTimeout(() => {
@@ -96,22 +109,15 @@ export default function Welcome() {
       {LANES.map((p, i) => {
         const season = SEASONS[currentSeason()];
         return (
-          <span
+          <Petal
             key={i}
-            className={`intro-petal ${season.fall ? "intro-petal-fall" : ""}`}
-            style={
-              {
-                left: p.left,
-                fontSize: p.size,
-                color: season.colors[i % season.colors.length],
-                "--petal-dur": p.dur,
-                "--petal-delay": p.delay,
-                "--petal-opacity": p.o,
-              } as React.CSSProperties
-            }
-          >
-            {season.glyphs[i % season.glyphs.length]}
-          </span>
+            lane={p}
+            index={i}
+            variant={petalStyle}
+            fall={season.fall}
+            color={season.colors[i % season.colors.length]}
+            glyph={season.glyphs[i % season.glyphs.length]}
+          />
         );
       })}
 

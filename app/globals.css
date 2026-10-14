@@ -1,14 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  --color-sky: #cfe2ee;
-  --color-sage: #d8e2d1;
-  --color-olive: #a7b79d;
-  --color-olive-deep: #6b7a5e;
-  --color-blush: #e6c6c3;
-  --color-cream: #faf6ed;
+  /* Lily board palette (design system v2, Oct 2026).
+     Legacy names kept as aliases so existing classes still work:
+     sage = sage-wash surface, sky/blush = dusty-pink, olive = moss,
+     olive-deep = brand olive. */
+  --color-sky: #d79ba1;
+  --color-sage: #d9d7c0;
+  --color-sage-leaf: #a7b48f;
+  --color-moss: #8b9a77;
+  --color-olive: #8b9a77;
+  --color-olive-deep: #56654d;
+  --color-blush: #d79ba1;
+  --color-dusty-pink: #d79ba1;
+  --color-mauve: #a64f5b;
+  --color-soft-yellow: #e7c36b;
+  --color-cream: #efe6d5;
   --color-earth: #bbaa92;
   --color-ink: #41493b;
+  --color-ink-muted: #5f6458;
   --font-display: var(--font-cormorant), Georgia, serif;
   --font-body: var(--font-karla), -apple-system, sans-serif;
 }
